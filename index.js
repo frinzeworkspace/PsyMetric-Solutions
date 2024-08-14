@@ -69,7 +69,6 @@ document.getElementById('PHQ-9-submitBtn').addEventListener('click', function() 
 });
 
 //MDQ
-
 document.getElementById('MDQ-2').addEventListener('change', function() {
     let MDQq2Element = document.getElementById('MDQ-2');
     if (MDQq2Element) {
@@ -392,9 +391,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     });
 });
-
-
-
 
 // PID5-5
 function calculateTotalScore(ids) {
@@ -1053,12 +1049,10 @@ function printTable() {
     // Print PID Table
     printWindow.document.write('<h2>PID</h2>');
     printWindow.document.write(tableHTML);
-    printWindow.document.write('<h3><br/></h3>');
 
     // Print PID Table 2
     printWindow.document.write('<h4>Domain</h4>');
     printWindow.document.write(additionalTableHTML);
-    printWindow.document.write('<h3><br/></h3>');
     printWindow.document.write('<h3><br/></h3>');
 
     // Print Test Results
@@ -1143,38 +1137,31 @@ document.querySelectorAll('.form-select').forEach(select => {
     });
 });
 
-
+//Refresh Warning
 document.addEventListener('DOMContentLoaded', function() {
-    const confirmModal = new bootstrap.Modal(document.getElementById('confirmModal'));
     let isConfirm = false;
 
-    // Track page load state
+    // Check session storage and set flag
     if (sessionStorage.getItem('reloadFlag') === 'true') {
         sessionStorage.removeItem('reloadFlag');
-        confirmModal.show();
+        // Set a flag to confirm the action
+        isConfirm = true;
     } else {
         sessionStorage.setItem('reloadFlag', 'true');
     }
 
-    // Add event listener for modal buttons
-    document.getElementById('modalConfirm').addEventListener('click', function() {
-        isConfirm = true;
-        sessionStorage.removeItem('reloadFlag');
-        confirmModal.hide();
-    });
-
-    document.getElementById('modalCancel').addEventListener('click', function() {
-        sessionStorage.removeItem('reloadFlag');
-        confirmModal.hide();
-    });
-
+    // Handle beforeunload event
     window.addEventListener('beforeunload', function(event) {
         if (sessionStorage.getItem('reloadFlag') === 'true' && !isConfirm) {
+            // The following line is necessary for the dialog to appear
             event.preventDefault();
-            event.returnValue = ''; // Standard for most browsers
+            // Most browsers will show a default message instead of this one
+            event.returnValue = ''; 
         }
     });
 });
+
+
 
 
 
