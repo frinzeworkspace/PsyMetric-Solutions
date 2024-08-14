@@ -1144,7 +1144,37 @@ document.querySelectorAll('.form-select').forEach(select => {
 });
 
 
+document.addEventListener('DOMContentLoaded', function() {
+    const confirmModal = new bootstrap.Modal(document.getElementById('confirmModal'));
+    let isConfirm = false;
 
+    // Track page load state
+    if (sessionStorage.getItem('reloadFlag') === 'true') {
+        sessionStorage.removeItem('reloadFlag');
+        confirmModal.show();
+    } else {
+        sessionStorage.setItem('reloadFlag', 'true');
+    }
+
+    // Add event listener for modal buttons
+    document.getElementById('modalConfirm').addEventListener('click', function() {
+        isConfirm = true;
+        sessionStorage.removeItem('reloadFlag');
+        confirmModal.hide();
+    });
+
+    document.getElementById('modalCancel').addEventListener('click', function() {
+        sessionStorage.removeItem('reloadFlag');
+        confirmModal.hide();
+    });
+
+    window.addEventListener('beforeunload', function(event) {
+        if (sessionStorage.getItem('reloadFlag') === 'true' && !isConfirm) {
+            event.preventDefault();
+            event.returnValue = ''; // Standard for most browsers
+        }
+    });
+});
 
 
 
