@@ -8,7 +8,7 @@ body{
     flex-direction: column;
     align-items: center;
     width: 100vw;
-    background-image: url("pexels-busranur-aydin-3800407-9991625.jpg");
+    background-image: url("/resource/pexels-taryn-elliott-6405694.jpg");
     height: 100%; /* You must set a specified height */
     background-position: center; /* Center the image */
     background-repeat: no-repeat; /* Do not repeat the image */
@@ -16,6 +16,7 @@ body{
     color: white;
     overflow-x: hidden;
     scroll-behavior: smooth;
+    margin: 0;
 }
 
 
@@ -24,7 +25,7 @@ body{
 }
 
 #PIDTable, #PIDTable-2, #TestResultsAndInterpretation{
-    min-width: 30%;
+    min-width: 100%;
     
 }
 
@@ -65,12 +66,13 @@ body{
 }
 
 
-
-
+#fullname{
+    border-radius: 0 5px 5px 0  !important;
+}
 
 .over-all-results{
     overflow-x: auto;
-    width: 55%;
+    width: 50%;
     /* background-color: rgb(255, 255, 255); */
     border: 1px solid rgba(255, 255, 255, 0.5);
     backdrop-filter: blur(8px);
@@ -80,6 +82,17 @@ body{
     color: rgb(255, 255, 255);
     border-radius: 20px;
     /* border: 1px solid red; */
+}
+
+.table-container{
+    overflow-x: auto;
+    overflow-y: auto;
+    /* height: 60vh; */
+    transform: rotateX(180deg);
+}
+
+.table-container >table {
+    transform: rotateX(180deg);
 }
 
 .over-all-results>div{
@@ -99,7 +112,7 @@ body{
 }
 
 .questions-and-results{
-    width: 45%;
+    width: 50%;
     /* border: 1px solid rgb(20, 112, 148); */
     display: flex;
     flex-direction: column;
@@ -142,20 +155,92 @@ body{
 }
 
 .custom-select.selected {
-    background-color: #76b2ce; /* Change this to your desired background color */
+    background-color: rgb(206, 85, 144); /* Change this to your desired background color */
     border-color: #dbdedf/* Optional: Change the border color to match the background */;
     color: white;
 }
 
 .input-group .selected-label {
-    background-color:  #76b2ce;
+    background-color: rgb(206, 85, 144);
     color: white;
 }
 
-.custom-select:focus {
-    outline: none;
-    box-shadow: none;
+
+/* All Labels */
+.custom-label{
+    border: 5px !important;
+    /* border: 2px solid rgb(245, 240, 240)  !important; */
+    background-color: white !important;
+    color: rgb(0, 0, 0) !important;
 }
+  
+/* Radio Sizing */
+.input-group{
+    width: 100%;
+  
+}
+.input-group label{
+    width: 25%;
+}
+.selection-cont{
+    width: 75%;
+}
+.selection-cont input{
+    width: 18.5%;
+}
+  
+  
+/* Radio when Selected */
+.btn-check:checked + .btn {
+    border-radius: 5px !important;
+    background-color: rgb(206, 85, 144) !important;
+    border-color: rgb(255, 255, 255) !important;
+    color: rgb(255, 255, 255) !important; /* Change text color for better contrast if needed */
+}
+  
+  
+/* Radio when "not" selected */
+.custom-radio, .custom-radio-last{
+    border-radius: 0 !important;
+    border: 2px solid  rgb(255, 255, 255) !important;
+    background-color: rgb(255, 255, 255)  !important;
+    color: rgb(0, 0, 0) !important;
+  
+}
+.custom-radio-last{
+    border-radius: 0 5px 5px 0 !important;
+}
+  
+/* Removes Focus */
+.custom-select:focus {
+    outline: none !important; 
+    box-shadow: none !important;
+}
+  
+  /* Long Answer */
+.custom-select.selected {
+    background-color: rgb(206, 85, 144); 
+    border-color: #ffffff;
+    color: white;
+}
+  
+/* Long Answer - Label when Selected */
+.input-group .selected-label {
+    background-color: rgb(255, 255, 255) !important;
+    color: rgb(0, 0, 0) !important;
+    border: 2px solid white !important;
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 .PID5-results{
@@ -197,14 +282,10 @@ h2,h1,h3{
     font-size: 10vh;
 }
 
-.MDQ-special{
-    width: 30%;
-}
 
 .MDQ-special-result{
-    width: 70%;
+    width: 60%;
 }
-
 
 
 .MDQ-questions{
@@ -308,6 +389,7 @@ h2,h1,h3{
     /* border: 1px solid red; */
     padding: 10px 0;
     
+    
 }
 
 .print-button>button{
@@ -315,11 +397,13 @@ h2,h1,h3{
     height: 5vh;
     border: none;
     border-radius: 5px;
-    background-color: rgb(74, 158, 179);
+    background-color: rgb(206, 85, 144);
     color: white;
+    transition: 3.5 ease-in-out;
+    font-size: 1.5vh;
 }
 .print-button>button:hover{
-    background-color: rgb(59, 236, 228);
+    background-color: rgb(216, 150, 210);
     color: rgb(248, 248, 248);
 }
 
@@ -390,6 +474,7 @@ h2,h1,h3{
 
 
 
+
 .PIDbuttonContainer{
     display: flex;
     flex-direction: row;
@@ -400,101 +485,93 @@ h2,h1,h3{
 
 
 
-@media (max-width:801px){
-    .questions-and-overall-results{
-        padding-top: 15px;
-        display: flex;
-        flex-direction: column;
-        width: 80vw;
-        height: 100%;
-        justify-content: center;
-    
-        /* border: 1px solid red; */
-        gap: 20px;
-    }
-
-
-    .over-all-results{
-        overflow-x: auto;
-        width: 100%;
-        background-color: rgb(255, 255, 255);
-        padding: 10px 30px;
-        height: 100%;
-        color: rgb(75, 71, 71);
-        border-radius: 20px;
-        /* border: 1px solid red; */
-    }
-    
-    .over-all-results>div{
-        margin-top: 15px;
-    }
-    
-    .over-all-results > h2{
-        padding-bottom: 25px;
-    }
-    
-    
-    .section-group{
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        gap: 20px;
-    }
-    
-    .questions-and-results{
-        width: 100%;
-        /* border: 1px solid rgb(20, 112, 148); */
-        display: flex;
-        flex-direction: column;
-        gap: 30px;
-    }
-    
-    .questions{
-        width: 40%;
-        border-radius: 20px;
-        /* background-color: rgb(236, 235, 218); */
-        background-color: rgb(230, 240, 238);
-    
-        padding:30px 10px 15px 10px;
-        display: flex;
-        flex-direction: column;
-    }
-    
-    
-    .results{
-        width: 60%;
-        /* background-color: rgb(236, 235, 218); */
-        background-color: rgb(230, 240, 238);
-        
-        padding:10px;
-        border-radius: 20px;
-        color: rgb(92, 91, 91);
-        text-align: center;
-    
-        display: flex;
-        flex-direction: column;
-        justify-content: start;
-    
-        gap: 3vh;
-    }
 
 
 
 
 
+#progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3.5px;
+    background-color: #f37c9a;
+    width: 0%; /* Initial width */
+    transition: width 0.1s; /* Smooth transition */
+    /* margin-left: 10px; */
+}
 
 
+  
+.header {
+    position: sticky;
+    top: 0;
+    left: 0;
+    color: white;
+    background: transparent;
+    padding: 1.3vh 0;
+    width: 100vw;
+    z-index: 1000; /* Ensures the header is above other content */
+    /* border: 1px solid rgba(255, 255, 255, 0.5); */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items:flex-start;
+    margin: 0;
+}
+.header h1{
+    font-size: 3vh;
+}
+
+#burger-icon{
+    height: 40px;
+    width: 40px;
+    margin-left: 3vw;
+    cursor: pointer;
+    /* border: 1px solid red; */
+}
+#profile-icon{
+    height: 38px;
+    width: 38px;
+    margin-right: 3.8vw;
+    cursor: pointer;
+    /* border: 1px solid red; */
 }
 
 
 
 
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #ead7d7; /* Background color of the preloader */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Ensures the preloader is above other content */
+    opacity: 1; /* Start fully visible */
+    transition: opacity 0.8s ease-out; /* Smooth fade-out effect */
+}
 
+.spinner {
+    border: 8px solid #f3f3f3; /* Light grey background of the spinner */
+    border-top: 8px solid #dd7ea2; /* Blue color of the spinner */
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    animation: spin .5s linear infinite;
+}
 
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
 
-
-
-
-
-
-
+#content {
+    display: none; /* Initially hidden */
+}

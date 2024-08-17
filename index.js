@@ -1,17 +1,88 @@
-// GAD 7
+// GAD-7 Div Generator
+document.addEventListener("DOMContentLoaded", function() {
+    const mainContainer = document.getElementById('questions-container');
+    
+    const numberOfQuestions = 220;
+    const questionsPerBlock = 10;
+    
+    for (let blockStart = 1; blockStart <= numberOfQuestions; blockStart += questionsPerBlock) {
+
+        const blockDiv = document.createElement('div');
+        blockDiv.className = 'questions PID5-questions';
+        
+        const blockHeader = document.createElement('h3');
+        blockHeader.textContent = `${blockStart}-${Math.min(blockStart + questionsPerBlock - 1, numberOfQuestions)}`;
+        blockDiv.appendChild(blockHeader);
+
+        for (let i = blockStart; i < blockStart + questionsPerBlock && i <= numberOfQuestions; i++) {
+
+            const questionDiv = document.createElement('div');
+            questionDiv.className = 'input-group mb-3';
+
+            const label = document.createElement('label');
+            label.className = 'input-group-text custom-label';
+            label.setAttribute('for', `PID5-${i}`);
+            label.textContent = `Q${i}`;
+
+            const buttonGroup = document.createElement('div');
+            buttonGroup.id = `PID5-${i}`;
+            buttonGroup.className = 'btn-group selection-cont';
+            buttonGroup.setAttribute('role', 'group');
+            buttonGroup.setAttribute('aria-labelledby', `PID5-${i}Label`);
+
+            for (let j = 0; j <= 3; j++) {
+                const radioInput = document.createElement('input');
+                radioInput.type = 'radio';
+                radioInput.className = 'btn-check';
+                radioInput.id = `PID5-${i}-${j}`;
+                radioInput.name = `PID5-${i}`;
+                radioInput.value = j;
+                radioInput.setAttribute('autocomplete', 'off');
+
+                const radioLabel = document.createElement('label');
+                radioLabel.className = j === 3 ? 'btn btn-outline-primary custom-radio-last' : 'btn btn-outline-primary custom-radio';
+                radioLabel.setAttribute('for', `PID5-${i}-${j}`);
+                radioLabel.textContent = j;
+
+                buttonGroup.appendChild(radioInput);
+                buttonGroup.appendChild(radioLabel);
+            }
+
+            questionDiv.appendChild(label);
+            questionDiv.appendChild(buttonGroup);
+
+            blockDiv.appendChild(questionDiv);
+
+            if (i === numberOfQuestions) {
+                const submitButton = document.createElement('button');
+                submitButton.id = 'PID5submitBtn';
+                submitButton.className = 'btn btn-primary mt-4';
+                submitButton.textContent = 'Submit';
+
+                blockDiv.appendChild(submitButton);
+            }
+        }
+        mainContainer.appendChild(blockDiv);
+    }
+});
+
+// GAD 7 Calculator
 document.getElementById('GADsubmitBtn').addEventListener('click', function() {
     let totalScore = 0;
-    
+
+    // Calculate score for Questions 1-7
     for (let i = 1; i <= 7; i++) {
-        let selectElement = document.getElementById('GAD0' + i);
-        let value = parseInt(selectElement.value) || 0;
-        totalScore += value;
+        let selectedValue = document.querySelector(`input[name="GAD0${i}"]:checked`);
+        if (selectedValue) {
+            totalScore += parseInt(selectedValue.value) || 0;
+        }
     }
 
-    document.querySelector('.TRI-GAD-7-Total').innerText = totalScore;
+    // Update the total score display
     document.querySelector('.GAD-7-Total').innerText = totalScore;
-   
- 
+    document.querySelector('.TRI-GAD-7-Total').innerText = totalScore;
+
+    // Determine and display anxiety level
     let GADanxietyLevel = '';
     if (totalScore >= 0 && totalScore <= 4) {
         GADanxietyLevel = 'Minimal Anxiety';
@@ -22,15 +93,14 @@ document.getElementById('GADsubmitBtn').addEventListener('click', function() {
     } else if (totalScore >= 15 && totalScore <= 21) {
         GADanxietyLevel = 'Severe Anxiety';
     }
- 
+
     document.getElementById('GAD-7-translate').innerText = GADanxietyLevel;
     document.getElementById('TRI-GAD-7-translate').innerText = GADanxietyLevel;
 
+    // Retrieve and display the answer for Q8
     let GADq10Answer = document.getElementById('GAD08').value;
     document.getElementById('TRI-GAD-7-Q8-answer').innerText = GADq10Answer;
     document.getElementById('GAD-7-Q8-answer').innerText = 'Q8 Answer: ' + GADq10Answer;
-
-
 });
 
 //PHQ 9
@@ -131,7 +201,33 @@ document.getElementById('MDQsubmitBtn').addEventListener('click', function() {
     document.getElementById('MDQ-translate').innerText = MDQLevel;
     document.getElementById('TRI-MDQ-translate').innerText = MDQLevel;
 
+    
+    let MDQ2Answer = document.getElementById('MDQ-2').value;
 
+    let MDQ2Level = '';
+    if (MDQ2Answer === 'Yes') {
+        MDQ2Level = 'Mood disorder symptoms are present.';
+    } else {
+        MDQ2Level = 'Low possibility of mood disorder.';
+    }
+
+    document.getElementById('TRI-MDQ-2-translate').innerText = MDQ2Level;
+    document.getElementById('TRI-MDQ-2-answer').innerText = '"'+ MDQ2Answer + '"';
+
+
+
+    let MDQ3Answer = document.getElementById('MDQ-3').value;
+
+    let MDQ3Level = '';
+    if (MDQ3Answer === 'Moderate Problem' || MDQ3Answer === 'Serious Problem') {
+        MDQ3Level = 'Mood disorder symptoms are present.';
+    } else {
+        MDQ3Level = 'Low possibility of mood disorder.';
+    }
+
+    document.getElementById('TRI-MDQ-3-translate').innerText = MDQ3Level;
+
+    document.getElementById('TRI-MDQ-3-answer').innerText = '"'+ MDQ3Answer + '"';
 
 
 });
@@ -153,7 +249,7 @@ document.getElementById('Bipolar-submitBtn').addEventListener('click', function(
 
     let BipolarLevel = '';
     if (BipolartotalScore >= 0 && BipolartotalScore <= 21) {
-        BipolarLevel = 'The Likelihood of the individual having the condition is low but cannot be excluded';
+        BipolarLevel = 'Low possibility of Bipolar I or II disorder';
     } else if (BipolartotalScore >= 22 && BipolartotalScore <= 50) {
         BipolarLevel = 'Suggest Possible Bipolar I or II Disorder';
     }
@@ -180,15 +276,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
 
-            let percentage = (totalScore / totalPoints * 100).toFixed(2);
+            let percentage = Math.round(totalScore / totalPoints * 100);
 
-            let adhdlevel = "";
+            let adhdlevel = " ";
             if (percentage >= 0 && percentage <= 34 ){
-                adhdlevel = "No Difficulties";
+                adhdlevel = "-";
             } else if (percentage >= 35 && percentage <= 49){
                 adhdlevel = "Mild to Moderate Difficulties";
             } else if (percentage >= 50 && percentage <= 69){
-                adhdlevel = "Severe Difficulties";
+                adhdlevel = "Moderate to Severe Difficulties";
             } else if (percentage >= 70 ){
                 adhdlevel = "Major Interference";
             }
@@ -208,11 +304,11 @@ document.addEventListener('DOMContentLoaded', function() {
             displayElement4.innerText = adhdlevel;
 
             if (displayElement) {
-                displayElement.innerText = part + " "+ "Scored " + totalScore + " out of " + totalPoints + " which has a percentage of " + percentage + "%";
+                displayElement.innerText = part + " "+ "Scored " + totalScore + " out of " + totalPoints + " which has a percentage of " + Math.round(percentage) + "%";
             } else {
                 console.warn("Display element with ID " + elementId + " not found.");
             }
-            console.log(part + " " + prefix + " Scored " + totalScore + " out of " + totalPoints + " which has a percentage of " + percentage + "%");
+            console.log(part + " " + prefix + " Scored " + totalScore + " out of " + totalPoints + " which has a percentage of " + Math.round(percentage) + "%");
         }
 
         // ADHD1
@@ -341,7 +437,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('EQ-submitBtn').addEventListener('click', function() {
 
         // Function to calculate and update score and percentage
-        function calculateAndDisplayScores(part, prefix, elementId) {
+        function calculateAndDisplayScores(part, prefix, totalElementId, translateElementId, additionalTextElementId) {
             let totalScore = 0;
             for (let i = 1; i <= 10; i++) {
                 let id = prefix + '-' + i;  // Updated to match the new ID format
@@ -354,43 +450,60 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
 
-            let displayElement = document.getElementById(elementId);
-            
-            if (displayElement) {
-                // Determine the additional text based on the score
-                let additionalText;
-                if (totalScore <= 24) {
-                    additionalText = "Area for enrichment: Requires attention and development";
-                } else if (totalScore <= 34) {
-                    additionalText = "Effective functioning: Consider Strengthening";
-                } else if (totalScore <= 40) {
-                    additionalText = "Enhanced skills: Use as leverage to develop weaker areas";
-                } else {
-                    additionalText = "Score out of range";
-                }
+            // Update the total score element
+            let totalElement = document.getElementById(totalElementId);
+            if (totalElement) {
+                totalElement.innerText = "Total Score: " + totalScore;
+            } else {
+                console.warn("Total score element with ID " + totalElementId + " not found.");
+            }
 
-                displayElement.innerText = part + " Scored " + totalScore + ": " + additionalText;
+            // Determine the additional text based on the score
+            let additionalText;
+            if (totalScore <= 24) {
+                additionalText = "Area for enrichment: Requires attention and development";
+            } else if (totalScore <= 34) {
+                additionalText = "Effective functioning: Consider Strengthening";
+            } else if (totalScore <= 40) {
+                additionalText = "Enhanced skills: Use as leverage to develop weaker areas";
+            } else {
+                additionalText = "Score out of range";
+            }
+
+            // Update the translate element with detailed information and log
+            let translateElement = document.getElementById(translateElementId);
+            if (translateElement) {
+                translateElement.innerText = part + " Scored " + totalScore + ": " + additionalText;
                 console.log(part + " Scored " + totalScore + ": " + additionalText);
             } else {
-                console.warn("Display element with ID " + elementId + " not found.");
+                console.warn("Translate element with ID " + translateElementId + " not found.");
+            }
+
+            // Update the additional text element with just the additional text
+            let additionalTextElement = document.getElementById(additionalTextElementId);
+            if (additionalTextElement) {
+                additionalTextElement.innerText = additionalText;
+            } else {
+                console.warn("Additional text element with ID " + additionalTextElementId + " not found.");
             }
         }
 
-        // Debugging: Ensure each part is processed
+        // Process each part
         console.log("Processing EQEA");
-        calculateAndDisplayScores("EA -", 'EQEA', 'EQEA-translate');
+        calculateAndDisplayScores("EA -", 'EQEA', 'TRI-TOTAL-EQ-EA', 'EQEA-translate', 'TRI-TRANSLATE-EQ-EA');
 
         console.log("Processing EQEM");
-        calculateAndDisplayScores("EM -", 'EQEM', 'EQEM-translate');
+        calculateAndDisplayScores("EM -", 'EQEM', 'TRI-TOTAL-EQ-EM', 'EQEM-translate', 'TRI-TRANSLATE-EQ-EM');
 
         console.log("Processing EQSEA");
-        calculateAndDisplayScores("SEA -", 'EQSEA', 'EQSEA-translate');
+        calculateAndDisplayScores("SEA -", 'EQSEA', 'TRI-TOTAL-EQ-SEA', 'EQSEA-translate', 'TRI-TRANSLATE-EQ-SEA');
 
         console.log("Processing EQRM");
-        calculateAndDisplayScores("RM -", 'EQRM', 'EQRM-translate');
+        calculateAndDisplayScores("RM -", 'EQRM', 'TRI-TOTAL-EQ-RM', 'EQRM-translate', 'TRI-TRANSLATE-EQ-RM');
 
     });
 });
+
 
 // PID5-5
 function calculateTotalScore(ids) {
@@ -413,7 +526,7 @@ function calculateTotalScore(ids) {
 
 function calculateProratedValue(totalScore, numberOfIds) {
     if (numberOfIds === 0) return 0; // Avoid division by zero
-    return Math.ceil((totalScore * 220) / numberOfIds);
+    return Math.round((totalScore * 220) / numberOfIds);
 }
 
 function generateIdList(prefix, start, end) {
@@ -451,7 +564,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('PID5-Anhedonia').innerText = 'Anhedonia: ' + AnhedoniaTotalScore;
         document.getElementById('Anhedonia-Total-Partial-Raw-Facet-Score').innerText = AnhedoniaSelectedValues.join(', ') + ' = ' + AnhedoniaTotalScore;
         document.getElementById('Anhedonia-Prorated-Raw-Facet-Score').innerText = proratedAnhedonia;
-        document.getElementById('Anhedonia-Average-Raw-Facet-Score').innerText = averageAnhedonia.toFixed(2);
+        document.getElementById('Anhedonia-Average-Raw-Facet-Score').innerText = Math.round(averageAnhedonia);
 
         //#--------Anxiousness----------#//
         const Anxiousness = ['PID5-79', 'PID5-93', 'PID5-95', 'PID5-96', 'PID5-109', 'PID5-110', 'PID5-130', 'PID5-141', 'PID5-174'];
@@ -470,7 +583,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('PID5-Anxiousness').innerText = 'Anxiousness: ' + AnxiousnessTotalScore;
         document.getElementById('Anxiousness-Total-Partial-Raw-Facet-Score').innerText = AnxiousnessSelectedValues.join(', ') + ' = ' + AnxiousnessTotalScore;
         document.getElementById('Anxiousness-Prorated-Raw-Facet-Score').innerText = proratedAnxiousness;
-        document.getElementById('Anxiousness-Average-Raw-Facet-Score').innerText = averageAnxiousness.toFixed(2);
+        document.getElementById('Anxiousness-Average-Raw-Facet-Score').innerText = Math.round(averageAnxiousness);
 
         //#--------AttentionSeeking----------#//
         let AttentionSeeking = ['PID5-14', 'PID5-43', 'PID5-74', 'PID5-111', 'PID5-113', 'PID5-173', 'PID5-191', 'PID5-211'];
@@ -489,7 +602,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('PID5-AttentionSeeking').innerText = 'Attention Seeking: ' + AttentionSeekingTotalScore;
         document.getElementById('AttentionSeeking-Total-Partial-Raw-Facet-Score').innerText = AttentionSeekingSelectedValues.join(', ') + ' = ' + AttentionSeekingTotalScore;
         document.getElementById('AttentionSeeking-Prorated-Raw-Facet-Score').innerText = proratedAttentionSeeking;
-        document.getElementById('AttentionSeeking-Average-Raw-Facet-Score').innerText = averageAttentionSeeking.toFixed(2);
+        document.getElementById('AttentionSeeking-Average-Raw-Facet-Score').innerText = Math.round(averageAttentionSeeking);
 
 
         //#--------Callousness----------#//
@@ -509,7 +622,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('PID5-Callousness').innerText = 'Callousness: ' + CallousnessTotalScore;
         document.getElementById('Callousness-Total-Partial-Raw-Facet-Score').innerText = CallousnessSelectedValues.join(', ') + ' = ' + CallousnessTotalScore;
         document.getElementById('Callousness-Prorated-Raw-Facet-Score').innerText = proratedCallousness;
-        document.getElementById('Callousness-Average-Raw-Facet-Score').innerText = averageCallousness.toFixed(2);
+        document.getElementById('Callousness-Average-Raw-Facet-Score').innerText = Math.round(averageCallousness);
 
 
 
@@ -530,7 +643,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('PID5-Deceitfulness').innerText = 'Deceitfulness: ' + DeceitfulnessTotalScore;
     document.getElementById('Deceitfulness-Total-Partial-Raw-Facet-Score').innerText = DeceitfulnessSelectedValues.join(', ') + ' = ' + DeceitfulnessTotalScore;
     document.getElementById('Deceitfulness-Prorated-Raw-Facet-Score').innerText = proratedDeceitfulness;
-    document.getElementById('Deceitfulness-Average-Raw-Facet-Score').innerText = averageDeceitfulness.toFixed(2);
+    document.getElementById('Deceitfulness-Average-Raw-Facet-Score').innerText = Math.round(averageDeceitfulness);
 
 
 
@@ -551,7 +664,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('PID5-Depressivity').innerText = 'Depressivity: ' + DepressivityTotalScore;
     document.getElementById('Depressivity-Total-Partial-Raw-Facet-Score').innerText = DepressivitySelectedValues.join(', ') + ' = ' + DepressivityTotalScore;
     document.getElementById('Depressivity-Prorated-Raw-Facet-Score').innerText = proratedDepressivity;
-    document.getElementById('Depressivity-Average-Raw-Facet-Score').innerText = averageDepressivity.toFixed(2);
+    document.getElementById('Depressivity-Average-Raw-Facet-Score').innerText = Math.round(averageDepressivity);
 
 
 
@@ -572,7 +685,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('PID5-Distractibility').innerText = 'Distractibility: ' + DistractibilityTotalScore;
     document.getElementById('Distractibility-Total-Partial-Raw-Facet-Score').innerText = DistractibilitySelectedValues.join(', ') + ' = ' + DistractibilityTotalScore;
     document.getElementById('Distractibility-Prorated-Raw-Facet-Score').innerText = proratedDistractibility;
-    document.getElementById('Distractibility-Average-Raw-Facet-Score').innerText = averageDistractibility.toFixed(2);
+    document.getElementById('Distractibility-Average-Raw-Facet-Score').innerText = Math.round(averageDistractibility);
 
 
 
@@ -594,7 +707,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('PID5-Eccentricity').innerText = 'Eccentricity: ' + EccentricityTotalScore ;
     document.getElementById('Eccentricity-Total-Partial-Raw-Facet-Score').innerText = EccentricitySelectedValues.join(', ') + ' = ' + EccentricityTotalScore;
     document.getElementById('Eccentricity-Prorated-Raw-Facet-Score').innerText = proratedEccentricity;
-    document.getElementById('Eccentricity-Average-Raw-Facet-Score').innerText = averageEccentricity.toFixed(2);
+    document.getElementById('Eccentricity-Average-Raw-Facet-Score').innerText = Math.round(averageEccentricity);
 
 
 
@@ -615,7 +728,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('PID5-EmotionalLability').innerText = 'Emotional Lability: ' + EmotionalLabilityTotalScore;
     document.getElementById('EmotionalLability-Total-Partial-Raw-Facet-Score').innerText = EmotionalLabilitySelectedValues.join(', ') + ' = ' + EmotionalLabilityTotalScore;
     document.getElementById('EmotionalLability-Prorated-Raw-Facet-Score').innerText = proratedEmotionalLability;
-    document.getElementById('EmotionalLability-Average-Raw-Facet-Score').innerText = averageEmotionalLability.toFixed(2);
+    document.getElementById('EmotionalLability-Average-Raw-Facet-Score').innerText = Math.round(averageEmotionalLability);
 
 
     //#--------Grandiosity----------#//
@@ -635,7 +748,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('PID5-Grandiosity').innerText = 'Grandiosity: ' + GrandiosityTotalScore;
     document.getElementById('Grandiosity-Total-Partial-Raw-Facet-Score').innerText = GrandiositySelectedValues.join(', ') + ' = ' + GrandiosityTotalScore;
     document.getElementById('Grandiosity-Prorated-Raw-Facet-Score').innerText = proratedGrandiosity;
-    document.getElementById('Grandiosity-Average-Raw-Facet-Score').innerText = averageGrandiosity.toFixed(2);
+    document.getElementById('Grandiosity-Average-Raw-Facet-Score').innerText = Math.round(averageGrandiosity);
 
 
     //#--------Hostility----------#//
@@ -655,7 +768,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('PID5-Hostility').innerText = 'Hostility: ' + HostilityTotalScore;
     document.getElementById('Hostility-Total-Partial-Raw-Facet-Score').innerText = HostilitySelectedValues.join(', ') + ' = ' + HostilityTotalScore;
     document.getElementById('Hostility-Prorated-Raw-Facet-Score').innerText = proratedHostility;
-    document.getElementById('Hostility-Average-Raw-Facet-Score').innerText = averageHostility.toFixed(2);
+    document.getElementById('Hostility-Average-Raw-Facet-Score').innerText = Math.round(averageHostility);
 
 
 
@@ -676,7 +789,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('PID5-Impulsivity').innerText = 'Impulsivity: ' + ImpulsivityTotalScore;
     document.getElementById('Impulsivity-Total-Partial-Raw-Facet-Score').innerText = ImpulsivitySelectedValues.join(', ') + ' = ' + ImpulsivityTotalScore;
     document.getElementById('Impulsivity-Prorated-Raw-Facet-Score').innerText = proratedImpulsivity;
-    document.getElementById('Impulsivity-Average-Raw-Facet-Score').innerText = averageImpulsivity.toFixed(2);
+    document.getElementById('Impulsivity-Average-Raw-Facet-Score').innerText = Math.round(averageImpulsivity);
 
 
 
@@ -697,7 +810,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('PID5-IntimacyAvoidance').innerText = 'Intimacy Avoidance: ' + IntimacyAvoidanceTotalScore;
     document.getElementById('IntimacyAvoidance-Total-Partial-Raw-Facet-Score').innerText = IntimacyAvoidanceSelectedValues.join(', ') + ' = ' + IntimacyAvoidanceTotalScore;
     document.getElementById('IntimacyAvoidance-Prorated-Raw-Facet-Score').innerText = proratedIntimacyAvoidance;
-    document.getElementById('IntimacyAvoidance-Average-Raw-Facet-Score').innerText = averageIntimacyAvoidance.toFixed(2);
+    document.getElementById('IntimacyAvoidance-Average-Raw-Facet-Score').innerText = Math.round(averageIntimacyAvoidance);
 
 
 
@@ -718,7 +831,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('PID5-Irresponsibility').innerText = 'Irresponsibility: ' + IrresponsibilityTotalScore;
     document.getElementById('Irresponsibility-Total-Partial-Raw-Facet-Score').innerText = IrresponsibilitySelectedValues.join(', ') + ' = ' + IrresponsibilityTotalScore;
     document.getElementById('Irresponsibility-Prorated-Raw-Facet-Score').innerText = proratedIrresponsibility;
-    document.getElementById('Irresponsibility-Average-Raw-Facet-Score').innerText = averageIrresponsibility.toFixed(2);
+    document.getElementById('Irresponsibility-Average-Raw-Facet-Score').innerText = Math.round(averageIrresponsibility);
 
 
 
@@ -739,7 +852,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('PID5-Manipulativeness').innerText = 'Manipulativeness: ' + ManipulativenessTotalScore;
     document.getElementById('Manipulativeness-Total-Partial-Raw-Facet-Score').innerText = ManipulativenessSelectedValues.join(', ') + ' = ' + ManipulativenessTotalScore;
     document.getElementById('Manipulativeness-Prorated-Raw-Facet-Score').innerText = proratedManipulativeness;
-    document.getElementById('Manipulativeness-Average-Raw-Facet-Score').innerText = averageManipulativeness.toFixed(2);
+    document.getElementById('Manipulativeness-Average-Raw-Facet-Score').innerText = Math.round(averageManipulativeness);
 
 
     //#--------PerceptualDysregulation----------#//
@@ -759,7 +872,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('PID5-PerceptualDysregulation').innerText = 'Perceptual Dysregulation: ' + PerceptualDysregulationTotalScore;
     document.getElementById('PerceptualDysregulation-Total-Partial-Raw-Facet-Score').innerText = PerceptualDysregulationSelectedValues.join(', ') + ' = ' + PerceptualDysregulationTotalScore;
     document.getElementById('PerceptualDysregulation-Prorated-Raw-Facet-Score').innerText = proratedPerceptualDysregulation;
-    document.getElementById('PerceptualDysregulation-Average-Raw-Facet-Score').innerText = averagePerceptualDysregulation.toFixed(2);
+    document.getElementById('PerceptualDysregulation-Average-Raw-Facet-Score').innerText = Math.round(averagePerceptualDysregulation);
 
 
 
@@ -780,7 +893,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('PID5-Perseveration').innerText = 'Perseveration: ' + PerseverationTotalScore;
     document.getElementById('Perseveration-Total-Partial-Raw-Facet-Score').innerText = PerseverationSelectedValues.join(', ') + ' = ' + PerseverationTotalScore;
     document.getElementById('Perseveration-Prorated-Raw-Facet-Score').innerText = proratedPerseveration;
-    document.getElementById('Perseveration-Average-Raw-Facet-Score').innerText = averagePerseveration.toFixed(2);
+    document.getElementById('Perseveration-Average-Raw-Facet-Score').innerText = Math.round(averagePerseveration);
 
 
 
@@ -802,7 +915,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('PID5-RestrictedAffectivity').innerText = 'Restricted Affectivity: ' + RestrictedAffectivityTotalScore;
     document.getElementById('RestrictedAffectivity-Total-Partial-Raw-Facet-Score').innerText = RestrictedAffectivitySelectedValues.join(', ') + ' = ' + RestrictedAffectivityTotalScore;
     document.getElementById('RestrictedAffectivity-Prorated-Raw-Facet-Score').innerText = proratedRestrictedAffectivity;
-    document.getElementById('RestrictedAffectivity-Average-Raw-Facet-Score').innerText = averageRestrictedAffectivity.toFixed(2);
+    document.getElementById('RestrictedAffectivity-Average-Raw-Facet-Score').innerText = Math.round(averageRestrictedAffectivity);
 
 
 
@@ -824,7 +937,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('PID5-RigidPerfectionism').innerText = 'Rigid Perfectionism: ' + RigidPerfectionismTotalScore;
     document.getElementById('RigidPerfectionism-Total-Partial-Raw-Facet-Score').innerText = RigidPerfectionismSelectedValues.join(', ') + ' = ' + RigidPerfectionismTotalScore;
     document.getElementById('RigidPerfectionism-Prorated-Raw-Facet-Score').innerText = proratedRigidPerfectionism;
-    document.getElementById('RigidPerfectionism-Average-Raw-Facet-Score').innerText = averageRigidPerfectionism.toFixed(2);
+    document.getElementById('RigidPerfectionism-Average-Raw-Facet-Score').innerText = Math.round(averageRigidPerfectionism);
 
 
 
@@ -846,7 +959,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('PID5-Risktaking').innerText = 'Risk taking: ' + RisktakingTotalScore;
     document.getElementById('Risktaking-Total-Partial-Raw-Facet-Score').innerText = RisktakingSelectedValues.join(', ') + ' = ' + RisktakingTotalScore;
     document.getElementById('Risktaking-Prorated-Raw-Facet-Score').innerText = proratedRisktaking;
-    document.getElementById('Risktaking-Average-Raw-Facet-Score').innerText = averageRisktaking.toFixed(2);
+    document.getElementById('Risktaking-Average-Raw-Facet-Score').innerText = Math.round(averageRisktaking);
 
 
 
@@ -868,7 +981,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('PID5-SeparationInsecurity').innerText = 'Separation Insecurity: ' + SeparationInsecurityTotalScore;
     document.getElementById('SeparationInsecurity-Total-Partial-Raw-Facet-Score').innerText = SeparationInsecuritySelectedValues.join(', ') + ' = ' + SeparationInsecurityTotalScore;
     document.getElementById('SeparationInsecurity-Prorated-Raw-Facet-Score').innerText = proratedSeparationInsecurity;
-    document.getElementById('SeparationInsecurity-Average-Raw-Facet-Score').innerText = averageSeparationInsecurity.toFixed(2);
+    document.getElementById('SeparationInsecurity-Average-Raw-Facet-Score').innerText = Math.round(averageSeparationInsecurity);
 
 
 
@@ -890,7 +1003,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('PID5-Submissiveness').innerText = 'Submissiveness: ' + SubmissivenessTotalScore;
     document.getElementById('Submissiveness-Total-Partial-Raw-Facet-Score').innerText = SubmissivenessSelectedValues.join(', ') + ' = ' + SubmissivenessTotalScore;
     document.getElementById('Submissiveness-Prorated-Raw-Facet-Score').innerText = proratedSubmissiveness;
-    document.getElementById('Submissiveness-Average-Raw-Facet-Score').innerText = averageSubmissiveness.toFixed(2);
+    document.getElementById('Submissiveness-Average-Raw-Facet-Score').innerText = Math.round(averageSubmissiveness);
 
 
 
@@ -911,7 +1024,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('PID5-Suspiciousness').innerText = 'Suspiciousness: ' + SuspiciousnessTotalScore;
     document.getElementById('Suspiciousness-Total-Partial-Raw-Facet-Score').innerText = SuspiciousnessSelectedValues.join(', ') + ' = ' + SuspiciousnessTotalScore;
     document.getElementById('Suspiciousness-Prorated-Raw-Facet-Score').innerText = proratedSuspiciousness;
-    document.getElementById('Suspiciousness-Average-Raw-Facet-Score').innerText = averageSuspiciousness.toFixed(2);
+    document.getElementById('Suspiciousness-Average-Raw-Facet-Score').innerText = Math.round(averageSuspiciousness);
 
 
 
@@ -932,7 +1045,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('PID5-Unusualbeliefsandexperiences').innerText = 'Unusual beliefs and experiences: ' + UnusualbeliefsTotalScore;
     document.getElementById('Unusualbeliefsandexperiences-Total-Partial-Raw-Facet-Score').innerText = UnusualbeliefsandexperiencesSelectedValues.join(', ') + ' = ' + UnusualbeliefsTotalScore;
     document.getElementById('Unusualbeliefsandexperiences-Prorated-Raw-Facet-Score').innerText = proratedUnusualbeliefsandexperiences;
-    document.getElementById('Unusualbeliefsandexperiences-Average-Raw-Facet-Score').innerText = averageUnusualbeliefsandexperiences.toFixed(2);
+    document.getElementById('Unusualbeliefsandexperiences-Average-Raw-Facet-Score').innerText = Math.round(averageUnusualbeliefsandexperiences);
 
 
 
@@ -954,7 +1067,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('PID5-Withdrawal').innerText = 'Withdrawal: ' + WithdrawalTotalScore;
     document.getElementById('Withdrawal-Total-Partial-Raw-Facet-Score').innerText = WithdrawalSelectedValues.join(', ') + ' = ' + WithdrawalTotalScore;
     document.getElementById('Withdrawal-Prorated-Raw-Facet-Score').innerText = proratedWithdrawal;
-    document.getElementById('Withdrawal-Average-Raw-Facet-Score').innerText = averageWithdrawal.toFixed(2);
+    document.getElementById('Withdrawal-Average-Raw-Facet-Score').innerText = Math.round(averageWithdrawal);
 
 
     let negativeAffect = EmotionalLabilityTotalScore + AnxiousnessTotalScore + SeparationInsecurityTotalScore ;
@@ -985,17 +1098,82 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('TRI-DetachmentOverallAverageofFacetScores').innerText = detachment/3;
 
     document.getElementById('AntagonismTotalofAverageFacetScores').innerText = ManipulativenessTotalScore + ", " + DeceitfulnessTotalScore + ", " + GrandiosityTotalScore + " = " + antagonism;
-    document.getElementById('AntagonismOverallAverageofFacetScores').innerText = negativeAffect/3;
-    document.getElementById('TRI-AntagonismOverallAverageofFacetScores').innerText = negativeAffect/3;
+    document.getElementById('AntagonismOverallAverageofFacetScores').innerText = antagonism/3;
+    document.getElementById('TRI-AntagonismOverallAverageofFacetScores').innerText = antagonism/3;
  
     document.getElementById('DisinhibitionTotalofAverageFacetScores').innerText = IrresponsibilityTotalScore + ", " + ImpulsivityTotalScore + ", " + DistractibilityTotalScore + " = " + disinhibition;
-    document.getElementById('DisinhibitionOverallAverageofFacetScores').innerText = detachment/3;
-    document.getElementById('TRI-DisinhibitionOverallAverageofFacetScores').innerText = detachment/3;
+    document.getElementById('DisinhibitionOverallAverageofFacetScores').innerText = disinhibition/3;
+    document.getElementById('TRI-DisinhibitionOverallAverageofFacetScores').innerText = disinhibition/3;
 
     document.getElementById('PsychoticismTotalofAverageFacetScores').innerText = UnusualbeliefsTotalScore + ", " + EccentricityTotalScore + ", " + PerceptualDysregulationTotalScore + " = " + psychoticism;
-    document.getElementById('PsychoticismOverallAverageofFacetScores').innerText = detachment/3;
-    document.getElementById('TRI-PsychoticismOverallAverageofFacetScores').innerText = detachment/3;
+    document.getElementById('PsychoticismOverallAverageofFacetScores').innerText = psychoticism/3;
+    document.getElementById('TRI-PsychoticismOverallAverageofFacetScores').innerText = psychoticism/3;
 });
+});
+
+
+
+
+function calculateTotalScore(ids) {
+    let totalScore = 0;
+    let selectedValues = [];
+    
+    ids.forEach(id => {
+        let selectedRadio = document.querySelector(`input[name="${id}"]:checked`);
+        if (selectedRadio) {
+            let value = parseInt(selectedRadio.value) || 0;
+            totalScore += value;
+            selectedValues.push(value); // Store only the value for display
+        } else {
+            console.warn(`No selection found for ID "${id}".`);
+        }
+    });
+
+    return { totalScore, selectedValues };
+}
+
+function calculateProratedValue(totalScore, numberOfIds) {
+    if (numberOfIds === 0) return 0; // Avoid division by zero
+    return Math.round((totalScore * 220) / numberOfIds);
+}
+
+function generateIdList(prefix, start, end) {
+    let ids = [];
+    for (let i = start; i <= end; i++) {
+        ids.push(`${prefix}-${i}`);
+    }
+    return ids;
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('PID5submitBtn').addEventListener('click', function() {
+        //#--------Total Score----------#//
+        const idsToInclude = generateIdList('PID5', 1, 220); // Generate IDs from PID5-1 to PID5-220
+
+        let result = calculateTotalScore(idsToInclude);
+        let totalScore = result.totalScore;
+
+        document.querySelector('.PID5-Total').innerText = 'Total Score: ' + totalScore;
+
+        //#--------Anhedonia----------#//
+        const Anhedonia = ['PID5-1', 'PID5-23', 'PID5-26', 'PID5-30', 'PID5-124', 'PID5-155', 'PID5-157', 'PID5-189'];
+        
+        let AnhedoniaResult = calculateTotalScore(Anhedonia);
+        let AnhedoniaTotalScore = AnhedoniaResult.totalScore;
+        let AnhedoniaSelectedValues = AnhedoniaResult.selectedValues;
+
+        // Calculate prorated Anhedonia value
+        let proratedAnhedonia = calculateProratedValue(AnhedoniaTotalScore, Anhedonia.length);
+
+        // Calculate Anhedonia Average
+        let averageAnhedonia = Anhedonia.length === 0 ? 0 : proratedAnhedonia / Anhedonia.length;
+
+        // Display results
+        document.getElementById('PID5-Anhedonia').innerText = 'Anhedonia: ' + AnhedoniaTotalScore;
+        document.getElementById('Anhedonia-Total-Partial-Raw-Facet-Score').innerText = AnhedoniaSelectedValues.join(', ') + ' = ' + AnhedoniaTotalScore;
+        document.getElementById('Anhedonia-Prorated-Raw-Facet-Score').innerText = proratedAnhedonia;
+        document.getElementById('Anhedonia-Average-Raw-Facet-Score').innerText = Math.round(averageAnhedonia);
+    });
 });
 
 
@@ -1067,99 +1245,10 @@ document.getElementById('fullname').addEventListener('input', handleInputChange)
 
 
 
-//Scroll Behaivor
-function setupScrolling(scrollBoxSelector, prevButtonSelector, nextButtonSelector, itemSelector) {
-    document.addEventListener('DOMContentLoaded', () => {
-        const scrollBox = document.querySelector(scrollBoxSelector);
-        const prevButton = document.querySelector(prevButtonSelector);
-        const nextButton = document.querySelector(nextButtonSelector);
-
-        // Get the width of one item
-        const itemWidth = document.querySelector(itemSelector).offsetWidth;
-
-        // Get the gap between items
-        const gap = parseFloat(getComputedStyle(scrollBox).gap);
-
-        // Calculate the total width of one item including the gap
-        const scrollAmount = itemWidth + gap;
-
-        prevButton.addEventListener('click', () => {
-            scrollBox.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-        });
-
-        nextButton.addEventListener('click', () => {
-            scrollBox.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-        });
-
-        // Optional: Disable buttons when reaching the start or end
-        scrollBox.addEventListener('scroll', () => {
-            prevButton.disabled = scrollBox.scrollLeft === 0;
-            nextButton.disabled = scrollBox.scrollLeft + scrollBox.clientWidth >= scrollBox.scrollWidth;
-        });
-
-        // Initial check to set button states
-        function updateButtonStates() {
-            prevButton.disabled = scrollBox.scrollLeft === 0;
-            nextButton.disabled = scrollBox.scrollLeft + scrollBox.clientWidth >= scrollBox.scrollWidth;
-        }
-        updateButtonStates();
-    });
-}
-
-setupScrolling('.PID5-special', '.PIDbuttons[id="prev"]', '.PIDbuttons[id="next"]', '.PID5-questions');
-setupScrolling('.MDQ-special', '.MDQbuttons[id="prev1"]', '.MDQbuttons[id="next2"]', '.MDQ-questions');
-setupScrolling('.bipolar-special', '.bipolarbuttons[id="prev3"]', '.bipolarbuttons[id="next4"]', '.bipolar-questions');
-
-setupScrolling('.ADHD-special', '.ADHDbuttons[id="prev5"]', '.ADHDbuttons[id="next6"]', '.ADHD-questions');
-setupScrolling('.BAI-special', '.BAIbuttons[id="prev7"]', '.BAIbuttons[id="next8"]', '.BAI-questions');
-setupScrolling('.BDI-special', '.BDIbuttons[id="prev9"]', '.BDIbuttons[id="next10"]', '.BDI-questions');
-setupScrolling('.EQ-special', '.EQbuttons[id="prev11"]', '.EQbuttons[id="next12"]', '.EQ-questions');
 
 
 
 
-//Select Behavior
-document.querySelectorAll('.form-select').forEach(select => {
-    select.addEventListener('change', function() {
-      // Add the 'selected' class to the current select element
-      this.classList.add('selected');
-      
-      // Find the label associated with this select
-      const label = document.querySelector(`label[for="${this.id}"]`);
-      
-      // Remove 'selected-label' class from all labels
-    //   document.querySelectorAll('.input-group label.selected-label').forEach(lbl => lbl.classList.remove('selected-label'));
-      
-      // Add 'selected-label' class to the associated label
-      if (label) {
-        label.classList.add('selected-label');
-      }
-    });
-});
-
-//Refresh Warning
-document.addEventListener('DOMContentLoaded', function() {
-    let isConfirm = false;
-
-    // Check session storage and set flag
-    if (sessionStorage.getItem('reloadFlag') === 'true') {
-        sessionStorage.removeItem('reloadFlag');
-        // Set a flag to confirm the action
-        isConfirm = true;
-    } else {
-        sessionStorage.setItem('reloadFlag', 'true');
-    }
-
-    // Handle beforeunload event
-    window.addEventListener('beforeunload', function(event) {
-        if (sessionStorage.getItem('reloadFlag') === 'true' && !isConfirm) {
-            // The following line is necessary for the dialog to appear
-            event.preventDefault();
-            // Most browsers will show a default message instead of this one
-            event.returnValue = ''; 
-        }
-    });
-});
 
 
 
