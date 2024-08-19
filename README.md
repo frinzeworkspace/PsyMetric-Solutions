@@ -1,2 +1,2 @@
-# psychReport
-psych calculator
+# PsyMetric Solutions
+Psychometrician Asessement Calculator
