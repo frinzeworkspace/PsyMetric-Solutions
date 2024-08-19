@@ -28,7 +28,7 @@ body{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 
 body {
@@ -45,19 +45,21 @@ body::before {
   position: absolute;
   width: 100%;
   height: 100%;
-  background: url("/resource/pexels-taryn-elliott-6405694.jpg"), #000;
+  background: url("pexels-taryn-elliott-6405694.jpg");
   background-position: center;
   background-size: cover;
 }
 
 .wrapper {
+
   width: 400px;
-  border-radius: 30px;
+  border-radius: 8px;
   padding: 30px;
   text-align: center;
   border: 1px solid rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
+  height: 48vh;
 }
 
 form {
@@ -68,12 +70,12 @@ form {
 h2 {
   font-size: 2rem;
   margin-bottom: 20px;
-  color: #f6f6f6;
+  color: #353535;
 }
 
 .input-field {
   position: relative;
-  border-bottom: 2px solid #ffffff;
+  border-bottom: 2px solid #000000;
   margin: 15px 0;
 }
 
@@ -82,7 +84,7 @@ h2 {
   top: 50%;
   left: 0;
   transform: translateY(-50%);
-  color: #ffffff;
+  color: #000000;
   font-size: 16px;
   pointer-events: none;
   transition: 0.15s ease;
@@ -95,7 +97,7 @@ h2 {
   border: none;
   outline: none;
   font-size: 16px;
-  color: #ffffff;
+  color: #000000;
 }
 
 .input-field input:focus~label,
@@ -110,7 +112,7 @@ h2 {
   align-items: center;
   justify-content: space-between;
   margin: 25px 0 35px 0;
-  color: #ffffff;
+  color: #000000;
 }
 
 #remember {
@@ -127,7 +129,7 @@ h2 {
 }
 
 .wrapper a {
-  color: #ffffff;
+  color: #000000;
   text-decoration: none;
 }
 
@@ -142,10 +144,12 @@ button {
   border: none;
   padding: 12px 20px;
   cursor: pointer;
-  border-radius: 10px;
+  border-radius: 3px;
   font-size: 16px;
   border: 2px solid transparent;
   transition: 0.3s ease;
+  margin-top: 2vh;
+  margin-bottom: 2.5vh;
 }
 
 button:hover {
@@ -161,5 +165,5 @@ button:hover {
 }
 
 .already{
-    color: rgb(0, 0, 0);
+    color: white;
 }

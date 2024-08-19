@@ -1,0 +1,202 @@
+body{
+    background-image: url("/resource/pexels-taryn-elliott-6405694.jpg");
+
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; /* Resize the background image to cover the entire container */
+    color: white;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    margin: 0;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center ;
+}
+
+
+
+
+main{
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+
+
+.container {
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    width: 70%;
+    height: 70%;
+
+    padding: 30px;
+    border-radius: 30px;
+
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space; */
+    align-items: center;
+}
+
+
+
+
+
+
+
+
+
+.profile-panel{
+    width: 100%;
+    height: 5%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0 20px;
+    /* border: 1px solid red; */
+
+
+}
+
+
+.profile-container{
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 15px;
+    padding: 0 10px;
+}
+
+.profile-container img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    background-color: #ffffff;
+    cursor: pointer;
+}
+
+.logout-panel{
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 0 10px;
+}
+
+
+
+
+
+
+
+
+
+
+.panel{
+    height: 95%;
+    width: 100%;
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    /* border: 1px solid red; */
+}
+
+
+
+
+
+
+
+.image-panel img{
+    width: 350px;
+    height: 350px;
+    /* border: 1px solid red; */
+}
+
+
+/* Header Styles */
+header h1 {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.tagline {
+    font-size: 16px;
+    color: #f0f0f0;
+}
+
+/* Button Styles */
+.btn {
+    width: 150px;
+    height: 50px;
+    margin: 20px 10px;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.new {
+    background-color: #FFB6C1;
+    color: #FAFAFA;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.records {
+    background-color: #333333;
+    color: #FAFAFA;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.btn:hover {
+    transform: scale(1.05);
+}
+
+.new:hover {
+    background-color: #f37c9a;
+}
+
+.records:hover {
+    background-color: #2b2b2b;
+}
+
+/* Footer Styles */
+footer {
+    margin-top: 50px;
+    background-color: #333333;
+    color: #FAFAFA;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+footer p {
+    margin: 5px 0;
+}
+
+footer nav a {
+    color: #FAFAFA;
+    margin: 0 10px;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+footer nav a:hover {
+    text-decoration: underline;
+}
