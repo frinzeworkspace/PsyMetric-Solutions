@@ -1,2 +1,2 @@
 # PsyMetric Solutions
-Psychometrician Asessement Calculator
+Psychometrician's Asessement Calculator
