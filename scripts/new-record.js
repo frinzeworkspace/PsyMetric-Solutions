@@ -78,11 +78,9 @@ document.getElementById('GADsubmitBtn').addEventListener('click', function() {
         }
     }
 
-    // Update the total score display
     document.querySelector('.GAD-7-Total').innerText = totalScore;
     document.querySelector('.TRI-GAD-7-Total').innerText = totalScore;
 
-    // Determine and display anxiety level
     let GADanxietyLevel = '';
     if (totalScore >= 0 && totalScore <= 4) {
         GADanxietyLevel = 'Minimal Anxiety';
@@ -97,7 +95,6 @@ document.getElementById('GADsubmitBtn').addEventListener('click', function() {
     document.getElementById('GAD-7-translate').innerText = GADanxietyLevel;
     document.getElementById('TRI-GAD-7-translate').innerText = GADanxietyLevel;
 
-
     let GADq10Answer = document.getElementById('GAD08').value;
     document.getElementById('TRI-GAD-7-Q8-answer').innerText = GADq10Answer;
     document.getElementById('GAD-7-Q8-answer').innerText = 'Q8 Answer: ' + GADq10Answer;
@@ -108,17 +105,14 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('PHQ-9-submitBtn').addEventListener('click', function() {
         let PHQtotalScore = 0;
         
-
         for (let i = 1; i <= 9; i++) {  
             let selectElement = document.getElementById('PHQ-9-' + (i < 10 ? '0' : '') + i);
             let value = parseInt(selectElement.value) || 0;
             PHQtotalScore += value;
         }
 
-
         document.querySelector('.TRI-PHQ-9-Total').innerText = PHQtotalScore;
         document.querySelector('.PHQ-9-Total').innerText = PHQtotalScore;
-
 
         let PHQdepressionLevel = '';
         if (PHQtotalScore >= 0 && PHQtotalScore <= 4) {
@@ -133,11 +127,9 @@ document.addEventListener('DOMContentLoaded', function() {
             PHQdepressionLevel = 'Severe Depression';
         }
 
-        // Update the depression level display
         document.getElementById('PHQ-9-translate').innerText = PHQdepressionLevel;
         document.getElementById('TRI-PHQ-9-translate').innerText = PHQdepressionLevel;
 
-        // Display the answer to question 10
         let PHQq10Answer = document.getElementById('PHQ-9-10').value;
         document.getElementById('PHQ-9-Q10-answer').innerText = 'Q10 Answer: ' + PHQq10Answer;
         document.getElementById('TRI-PHQ-9-Q10-answer').innerText = PHQq10Answer;
@@ -218,6 +210,7 @@ document.getElementById('Bipolar-submitBtn').addEventListener('click', function(
     let BipolartotalScore = 0;
     
     for (let i = 1; i <= 27; i++) {
+
         let id = 'Bipolar-' + ('0' + i).slice(-2);
         let selectElement = document.getElementById(id);
         let value = parseInt(selectElement.value) || 0;
@@ -242,7 +235,6 @@ document.getElementById('Bipolar-submitBtn').addEventListener('click', function(
 document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('ADHD-submitBtn').addEventListener('click', function() {
 
-        // Function to calculate and update score and percentage
         function calculateAndDisplayScores(part, prefix, maxQuestions, totalPoints, elementId, TRITotalid, TRIPercentageid, TRITranslateid) {
             let totalScore = 0;
             for (let i = 1; i <= maxQuestions; i++) {
@@ -325,7 +317,7 @@ document.getElementById('Life-Satisfaction-submitBtn').addEventListener('click',
     for (let i = 1; i <= 5; i++) {
         let selectElement = document.getElementById('Life-Satisfaction' + i);
         let value = parseInt(selectElement.value) || 0;
-        LifeSatisfactiontotalScore += value;  
+        LifeSatisfactiontotalScore += value;  // Fixed variable name
     }
 
     document.querySelector('.Life-Satisfaction-Total').innerText = LifeSatisfactiontotalScore;
@@ -360,7 +352,7 @@ document.getElementById('BAI-submitBtn').addEventListener('click', function() {
     for (let i = 1; i <= 5; i++) {
         let selectElement = document.getElementById('BAI-' + i);
         let value = parseInt(selectElement.value) || 0;
-        BAItotalScore += value;  
+        BAItotalScore += value;  // Fixed variable name
     }
 
     document.querySelector('.BAI-Total').innerText = BAItotalScore;
@@ -420,7 +412,7 @@ document.addEventListener('DOMContentLoaded', function() {
         function calculateAndDisplayScores(part, prefix, totalElementId, translateElementId, additionalTextElementId) {
             let totalScore = 0;
             for (let i = 1; i <= 10; i++) {
-                let id = prefix + '-' + i;  
+                let id = prefix + '-' + i;  // Updated to match the new ID format
                 let selectElement = document.getElementById(id);
                 if (selectElement) {
                     let value = parseInt(selectElement.value) || 0;
@@ -450,7 +442,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 additionalText = "Score out of range";
             }
 
-
+            // Update the translate element with detailed information and log
             let translateElement = document.getElementById(translateElementId);
             if (translateElement) {
                 translateElement.innerText = part + " Scored " + totalScore + ": " + additionalText;
@@ -459,7 +451,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.warn("Translate element with ID " + translateElementId + " not found.");
             }
 
-   
+            // Update the additional text element with just the additional text
             let additionalTextElement = document.getElementById(additionalTextElementId);
             if (additionalTextElement) {
                 additionalTextElement.innerText = additionalText;
@@ -526,7 +518,7 @@ function calculateTotalScore(ids) {
         if (selectedRadio) {
             let value = parseInt(selectedRadio.value) || 0;
             totalScore += value;
-            selectedValues.push(value); 
+            selectedValues.push(value); // Store only the value for display
         } else {
             console.warn(`No selection found for ID "${id}".`);
         }
