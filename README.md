@@ -1,3 +1,2 @@
 # PsyMetric Solutions
-Psychometrician's Asessement Report System
-# https://psychreport.netlify.app/
+Psychometrician's Asessement Report System: https://psychreport.netlify.app/
