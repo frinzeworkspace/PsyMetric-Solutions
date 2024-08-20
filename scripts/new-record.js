@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", function() {
 document.getElementById('GADsubmitBtn').addEventListener('click', function() {
     let totalScore = 0;
 
-    // Calculate score for Questions 1-7
+
     for (let i = 1; i <= 7; i++) {
         let selectedValue = document.querySelector(`input[name="GAD0${i}"]:checked`);
         if (selectedValue) {
@@ -97,7 +97,7 @@ document.getElementById('GADsubmitBtn').addEventListener('click', function() {
     document.getElementById('GAD-7-translate').innerText = GADanxietyLevel;
     document.getElementById('TRI-GAD-7-translate').innerText = GADanxietyLevel;
 
-    // Retrieve and display the answer for Q8
+
     let GADq10Answer = document.getElementById('GAD08').value;
     document.getElementById('TRI-GAD-7-Q8-answer').innerText = GADq10Answer;
     document.getElementById('GAD-7-Q8-answer').innerText = 'Q8 Answer: ' + GADq10Answer;
@@ -108,18 +108,18 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('PHQ-9-submitBtn').addEventListener('click', function() {
         let PHQtotalScore = 0;
         
-        // Loop through questions 1 to 9
+
         for (let i = 1; i <= 9; i++) {  
             let selectElement = document.getElementById('PHQ-9-' + (i < 10 ? '0' : '') + i);
             let value = parseInt(selectElement.value) || 0;
             PHQtotalScore += value;
         }
 
-        // Update the total score display
+
         document.querySelector('.TRI-PHQ-9-Total').innerText = PHQtotalScore;
         document.querySelector('.PHQ-9-Total').innerText = PHQtotalScore;
 
-        // Determine the level of depression based on the total score
+
         let PHQdepressionLevel = '';
         if (PHQtotalScore >= 0 && PHQtotalScore <= 4) {
             PHQdepressionLevel = 'Minimal Depression';
@@ -218,7 +218,6 @@ document.getElementById('Bipolar-submitBtn').addEventListener('click', function(
     let BipolartotalScore = 0;
     
     for (let i = 1; i <= 27; i++) {
-        // Format the ID to match 'Bipolar-01', 'Bipolar-02', ..., 'Bipolar-27'
         let id = 'Bipolar-' + ('0' + i).slice(-2);
         let selectElement = document.getElementById(id);
         let value = parseInt(selectElement.value) || 0;
@@ -326,7 +325,7 @@ document.getElementById('Life-Satisfaction-submitBtn').addEventListener('click',
     for (let i = 1; i <= 5; i++) {
         let selectElement = document.getElementById('Life-Satisfaction' + i);
         let value = parseInt(selectElement.value) || 0;
-        LifeSatisfactiontotalScore += value;  // Fixed variable name
+        LifeSatisfactiontotalScore += value;  
     }
 
     document.querySelector('.Life-Satisfaction-Total').innerText = LifeSatisfactiontotalScore;
@@ -361,7 +360,7 @@ document.getElementById('BAI-submitBtn').addEventListener('click', function() {
     for (let i = 1; i <= 5; i++) {
         let selectElement = document.getElementById('BAI-' + i);
         let value = parseInt(selectElement.value) || 0;
-        BAItotalScore += value;  // Fixed variable name
+        BAItotalScore += value;  
     }
 
     document.querySelector('.BAI-Total').innerText = BAItotalScore;
@@ -417,11 +416,11 @@ document.getElementById('BDI-submitBtn').addEventListener('click', function() {
 document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('EQ-submitBtn').addEventListener('click', function() {
 
-        // Function to calculate and update score and percentage
+
         function calculateAndDisplayScores(part, prefix, totalElementId, translateElementId, additionalTextElementId) {
             let totalScore = 0;
             for (let i = 1; i <= 10; i++) {
-                let id = prefix + '-' + i;  // Updated to match the new ID format
+                let id = prefix + '-' + i;  
                 let selectElement = document.getElementById(id);
                 if (selectElement) {
                     let value = parseInt(selectElement.value) || 0;
@@ -451,7 +450,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 additionalText = "Score out of range";
             }
 
-            // Update the translate element with detailed information and log
+
             let translateElement = document.getElementById(translateElementId);
             if (translateElement) {
                 translateElement.innerText = part + " Scored " + totalScore + ": " + additionalText;
@@ -460,7 +459,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.warn("Translate element with ID " + translateElementId + " not found.");
             }
 
-            // Update the additional text element with just the additional text
+   
             let additionalTextElement = document.getElementById(additionalTextElementId);
             if (additionalTextElement) {
                 additionalTextElement.innerText = additionalText;
@@ -527,7 +526,7 @@ function calculateTotalScore(ids) {
         if (selectedRadio) {
             let value = parseInt(selectedRadio.value) || 0;
             totalScore += value;
-            selectedValues.push(value); // Store only the value for display
+            selectedValues.push(value); 
         } else {
             console.warn(`No selection found for ID "${id}".`);
         }
