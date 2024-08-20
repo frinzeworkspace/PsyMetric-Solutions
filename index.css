@@ -163,3 +163,28 @@ button:hover {
 .already{
     color: rgb(0, 0, 0);
 }
+
+#login-logo{
+  height: 45px;
+}
+
+form h2{
+  font-size: 3vh;
+}
+
+@media(max-width:400px){
+  .wrapper {
+    width: 300px;
+  }
+  .forget {
+    font-size: 14.2px;
+  }
+
+  #login-logo{
+    height: 45px;
+  }
+
+  form h2{
+    font-size: 2.7vh;
+  }
+}
