@@ -190,3 +190,8 @@ form h2{
     font-size: 2.7vh;
   }
 }
+
+input:-webkit-autofill {
+  background-color: transparent; /* or any color with opacity */
+  /* Additional styles to change text color, borders, etc. */
+}

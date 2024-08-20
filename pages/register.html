@@ -6,26 +6,27 @@
     <title>Register</title>
     <link rel="stylesheet" href="/styling/register.css">
     <link rel="icon" href="/resource/logo (2).png" type="image/x-icon" />
+    <script type="module" src="/scripts/register.js" defer></script>
 </head>
 <body>
     <div class="wrapper">
         <form action="#">
-            <h2>Register</h2>
+            <div><img 
+                id="login-logo" src="/resource/psymetric-logo.png">
+               </div>
+            <h2>PsyMetric Solutions™</h2>
+            <h2>Sign Up</h2>
             <div class="input-field">
-                <input type="text" required>
+                <input id="email" type="text"  autocomplete="off" required>
                 <label>Enter your email</label>
             </div>
             <div class="input-field">
-                <input type="password" required>
+                <input id="password" type="password"  autocomplete="off" required>
                 <label>Enter your password</label>
             </div>
-            <div class="input-field">
-                <input type="password" required>
-                <label>Confirm your password</label>
-            </div>
-            <button type="submit">Register</button>
+            <button id="submit" type="submit">Create Account</button>
             <div class="login">
-                <p class="already">Already have an account? <a href="login.html">Login</a></p>
+                <p class="already">Already have an account? <a href="/index.html">Login</a></p>
             </div>
         </form>
     </div>    

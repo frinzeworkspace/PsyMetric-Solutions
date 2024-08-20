@@ -3,25 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="index.css">
-  
+    <link rel="stylesheet" href="/index.css">
     <link rel="icon" href="/resource/logo (2).png" type="image/x-icon" />
+    <script type="module" src="/scripts/login.js" defer></script>
     <title>PsyMetric Solutions™</title>
 </head>
 <body>
-    <!-- <h1 class="Login-Text">Psych Calc</h1> -->
     <div class="wrapper">
-        <form action="/pages/home.html">
-          <div><img 
-           id="login-logo" src="/resource/psymetric-logo.png"></div>
+        <form id="login-form">
+          <div><img id="login-logo" src="/resource/psymetric-logo.png"></div>
           <h2>PsyMetric Solutions™</h2>
-            <div class="input-field">
-            <input type="text" required>
-            <label>Enter your email</label>
+          <div class="input-field">
+            <input id="email" type="text"  autocomplete="off" required>
+            <label for="email">Enter your email</label>
           </div>
           <div class="input-field">
-            <input type="password" required>
-            <label>Enter your password</label>
+            <input id="password" type="password"  autocomplete="off" required>
+            <label for="password">Enter your password</label>
           </div>
           <div class="forget">
             <label for="remember">
@@ -30,12 +28,11 @@
             </label>
             <a href="#">Forgot password?</a>
           </div>
-          <button type="submit">Log In</button>
+          <button id="submit" type="submit">Log In</button>
           <div class="register">
-            <p class="already">Don't have an account? <a href="register.html">Register</a></p>
+            <p class="already">Don't have an account? <a href="/pages/register.html">Register</a></p>
           </div>
         </form>
       </div>
-    
 </body>
 </html>

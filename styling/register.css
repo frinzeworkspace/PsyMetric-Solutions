@@ -8,7 +8,7 @@ body{
     flex-direction: column;
     align-items: center;
     width: 100vw;
-    background-image: url("pexels-taryn-elliott-6405694.jpg");
+    background-image: url("/resource/pexels-taryn-elliott-6405694.jpg");
     height: 100%; /* You must set a specified height */
     background-position: center; /* Center the image */
     background-repeat: no-repeat; /* Do not repeat the image */
@@ -28,7 +28,7 @@ body{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Open Sans", sans-serif;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
@@ -53,13 +53,13 @@ body::before {
 .wrapper {
 
   width: 400px;
-  border-radius: 8px;
+  border-radius: 30px;
   padding: 30px;
   text-align: center;
   border: 1px solid rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  height: 48vh;
+  height: 100%;
 }
 
 form {
@@ -70,12 +70,12 @@ form {
 h2 {
   font-size: 2rem;
   margin-bottom: 20px;
-  color: #353535;
+  color: #ffffff;
 }
 
 .input-field {
   position: relative;
-  border-bottom: 2px solid #000000;
+  border-bottom: 2px solid #ffffff;
   margin: 15px 0;
 }
 
@@ -84,7 +84,7 @@ h2 {
   top: 50%;
   left: 0;
   transform: translateY(-50%);
-  color: #000000;
+  color: #ffffff;
   font-size: 16px;
   pointer-events: none;
   transition: 0.15s ease;
@@ -97,7 +97,7 @@ h2 {
   border: none;
   outline: none;
   font-size: 16px;
-  color: #000000;
+  color: #ffffff;
 }
 
 .input-field input:focus~label,
@@ -129,7 +129,7 @@ h2 {
 }
 
 .wrapper a {
-  color: #000000;
+  color: #ffffff;
   text-decoration: none;
 }
 
@@ -138,13 +138,13 @@ h2 {
 }
 
 button {
-  background: #fff;
+  background: #fcd2d2;
   color: #000;
   font-weight: 600;
   border: none;
   padding: 12px 20px;
   cursor: pointer;
-  border-radius: 3px;
+  border-radius: 10px;
   font-size: 16px;
   border: 2px solid transparent;
   transition: 0.3s ease;
@@ -165,5 +165,32 @@ button:hover {
 }
 
 .already{
-    color: white;
+    color: rgb(0, 0, 0);
+}
+
+#login-logo{
+  height: 45px;
+}
+
+form h2{
+  font-size: 3vh;
+  margin-top: 5px;
+}
+
+@media(max-width:400px){
+  .wrapper {
+    width: 300px;
+  }
+  .forget {
+    font-size: 12px;
+  }
+
+  #login-logo{
+    height: 45px;
+  }
+
+  form h2{
+    margin-top: 5px;
+    font-size: 2.7vh;
+  }
 }
