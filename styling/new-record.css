@@ -190,11 +190,28 @@ body{
 .input-group label{
     width: 25%;
 }
+
+
+
 .selection-cont{
     width: 75%;
 }
+
 .selection-cont input{
     width: 18.5%;
+}
+
+
+.input-group-eq label{
+    width: 20%;
+}
+
+.selection-cont-eq{
+    width: 80%;
+}
+
+.selection-cont-eq input{
+    width: 16% !important;
 }
   
   

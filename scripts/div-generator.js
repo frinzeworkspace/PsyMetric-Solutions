@@ -1,70 +1,56 @@
-//PID5
-// document.addEventListener("DOMContentLoaded", function() {
-//     const mainContainer = document.getElementById('questions-container');
-    
-//     const numberOfQuestions = 220;
-//     const questionsPerBlock = 10;
-    
-//     for (let blockStart = 1; blockStart <= numberOfQuestions; blockStart += questionsPerBlock) {
+// EQ
+const numQuestions = 10;
 
-//         const blockDiv = document.createElement('div');
-//         blockDiv.className = 'questions PID5-questions';
-        
-//         const blockHeader = document.createElement('h3');
-//         blockHeader.textContent = `${blockStart}-${Math.min(blockStart + questionsPerBlock - 1, numberOfQuestions)}`;
-//         blockDiv.appendChild(blockHeader);
+const sections = [
+    { id: 'EA', title: 'EA' },
+    { id: 'EM', title: 'EM' },
+    { id: 'SEA', title: 'SEA' },
+    { id: 'RM', title: 'RM' }
+];
 
-//         for (let i = blockStart; i < blockStart + questionsPerBlock && i <= numberOfQuestions; i++) {
+function generateRadioButtons(questionId) {
+    let html = '';
+    for (let i = 0; i <= 4; i++) {
+        html += `
+            <input type="radio" class="btn-check" id="${questionId}-${i}" name="${questionId}" value="${i}" autocomplete="off">
+            <label class="btn btn-outline-primary ${i === 4 ? 'custom-radio-last' : 'custom-radio'}" for="${questionId}-${i}">${i}</label>
+        `;
+    }
+    return html;
+}
 
-//             const questionDiv = document.createElement('div');
-//             questionDiv.className = 'input-group mb-3';
+function generateQuestionBlocks(sectionId) {
+    let html = '';
+    for (let i = 1; i <= numQuestions; i++) {
+        html += `
+            <div class="input-group input-group-eq mb-3">
+                <label for="${sectionId}-${i}" class="input-group-text custom-label">Q${i}</label>
+                <div id="${sectionId}-${i}" class="btn-group selection-cont selection-cont-eq" role="group" aria-labelledby="${sectionId}-${i}Label">
+                    ${generateRadioButtons(`${sectionId}-${i}`)}
+                </div>
+            </div>
+        `;
+    }
 
-//             const label = document.createElement('label');
-//             label.className = 'input-group-text custom-label';
-//             label.setAttribute('for', `PID5-${i}`);
-//             label.textContent = `Q${i}`;
+    if (sectionId === 'RM') {
+        html += `<button id="EQ-submitBtn" class="btn btn-primary">Submit</button>`;
+    }
+    return html;
+}
 
-//             const buttonGroup = document.createElement('div');
-//             buttonGroup.id = `PID5-${i}`;
-//             buttonGroup.className = 'btn-group selection-cont';
-//             buttonGroup.setAttribute('role', 'group');
-//             buttonGroup.setAttribute('aria-labelledby', `PID5-${i}Label`);
+function generateQuestionnaire() {
+    let html = '';
+    sections.forEach(section => {
+        html += `
+            <div class="questions EQ-questions">
+                <h3>${section.title}</h3>
+                ${generateQuestionBlocks(section.id)}
+            </div>
+        `;
+    });
+    return html;
+}
 
-//             for (let j = 0; j <= 3; j++) {
-//                 const radioInput = document.createElement('input');
-//                 radioInput.type = 'radio';
-//                 radioInput.className = 'btn-check';
-//                 radioInput.id = `PID5-${i}-${j}`;
-//                 radioInput.name = `PID5-${i}`;
-//                 radioInput.value = j;
-//                 radioInput.setAttribute('autocomplete', 'off');
-
-//                 const radioLabel = document.createElement('label');
-//                 radioLabel.className = j === 3 ? 'btn btn-outline-primary custom-radio-last' : 'btn btn-outline-primary custom-radio';
-//                 radioLabel.setAttribute('for', `PID5-${i}-${j}`);
-//                 radioLabel.textContent = j;
-
-//                 buttonGroup.appendChild(radioInput);
-//                 buttonGroup.appendChild(radioLabel);
-//             }
-
-//             questionDiv.appendChild(label);
-//             questionDiv.appendChild(buttonGroup);
-
-//             blockDiv.appendChild(questionDiv);
-
-//             if (i === numberOfQuestions) {
-//                 const submitButton = document.createElement('button');
-//                 submitButton.id = 'PID5submitBtn';
-//                 submitButton.className = 'btn btn-primary mt-4';
-//                 submitButton.textContent = 'Submit';
-
-//                 blockDiv.appendChild(submitButton);
-//             }
-//         }
-//         mainContainer.appendChild(blockDiv);
-//     }
-//    
-// });
+document.querySelector('.EQ-special').innerHTML = generateQuestionnaire();
 
 

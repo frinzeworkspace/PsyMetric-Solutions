@@ -31,7 +31,6 @@ document.getElementById('login-form').addEventListener("submit", function (event
         return;
     }
 
-    // Directly call signInWithEmailAndPassword without setting persistence
     signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             const user = userCredential.user;

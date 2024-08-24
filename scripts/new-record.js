@@ -104,11 +104,16 @@ document.getElementById('GADsubmitBtn').addEventListener('click', function() {
 document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('PHQ-9-submitBtn').addEventListener('click', function() {
         let PHQtotalScore = 0;
+
         
-        for (let i = 1; i <= 9; i++) {  
-            let selectElement = document.getElementById('PHQ-9-' + (i < 10 ? '0' : '') + i);
-            let value = parseInt(selectElement.value) || 0;
-            PHQtotalScore += value;
+        for (let i = 1; i <= 9; i++) {
+            let radioButtons = document.getElementsByName('PHQ-9-0' + i);
+            for (let j = 0; j < radioButtons.length; j++) {
+                if (radioButtons[j].checked) {
+                    PHQtotalScore += parseInt(radioButtons[j].value);
+                    break;
+                }
+            }
         }
 
         document.querySelector('.TRI-PHQ-9-Total').innerText = PHQtotalScore;
@@ -127,6 +132,7 @@ document.addEventListener('DOMContentLoaded', function() {
             PHQdepressionLevel = 'Severe Depression';
         }
 
+
         document.getElementById('PHQ-9-translate').innerText = PHQdepressionLevel;
         document.getElementById('TRI-PHQ-9-translate').innerText = PHQdepressionLevel;
 
@@ -135,6 +141,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('TRI-PHQ-9-Q10-answer').innerText = PHQq10Answer;
     });
 });
+
 
 
 //MDQ
@@ -290,7 +297,7 @@ document.addEventListener('DOMContentLoaded', function() {
         calculateAndDisplayScores("II.",'ADHD2', 8, 24, 'ADHD2-translate' , 'TRI-ADHD-2-TOTAL' , 'TRI-ADHD2-PERCENT' , 'TRI-ADHD-2-TRANSLATE');
 
         // ADHD3
-        calculateAndDisplayScores("III.",'ADHD3', 6, 36, 'ADHD3-translate' , 'TRI-ADHD-3-TOTAL' , 'TRI-ADHD3-PERCENT' , 'TRI-ADHD-3-TRANSLATE');
+        calculateAndDisplayScores("III.",'ADHD3', 12, 36, 'ADHD3-translate' , 'TRI-ADHD-3-TOTAL' , 'TRI-ADHD3-PERCENT' , 'TRI-ADHD-3-TRANSLATE');
 
         // ADHD4
         calculateAndDisplayScores("IV.",'ADHD4', 5, 15, 'ADHD4-translate' , 'TRI-ADHD-4-TOTAL' , 'TRI-ADHD4-PERCENT' , 'TRI-ADHD-4-TRANSLATE');
@@ -345,19 +352,25 @@ document.getElementById('Life-Satisfaction-submitBtn').addEventListener('click',
 });
 
 
+
 //BAI
 document.getElementById('BAI-submitBtn').addEventListener('click', function() {
     let BAItotalScore = 0;
 
-    for (let i = 1; i <= 5; i++) {
-        let selectElement = document.getElementById('BAI-' + i);
-        let value = parseInt(selectElement.value) || 0;
-        BAItotalScore += value;  // Fixed variable name
+    for (let i = 1; i <= 21; i++) {
+
+        let selectedValue = document.querySelector('input[name="BAI-' + i + '"]:checked');
+        
+        // If a radio button is selected, get its value; otherwise, default to 0
+        let value = selectedValue ? parseInt(selectedValue.value) : 0;
+        BAItotalScore += value;
     }
 
+    // Update the total score display
     document.querySelector('.BAI-Total').innerText = BAItotalScore;
     document.querySelector('.TRI-BAI-Total').innerText = BAItotalScore;
 
+    // Determine the anxiety level based on the total score
     let BAILevel = '';
     if (BAItotalScore >= 0 && BAItotalScore <= 21) {
         BAILevel = 'Low Anxiety';
@@ -367,58 +380,58 @@ document.getElementById('BAI-submitBtn').addEventListener('click', function() {
         BAILevel = 'Potential concerning levels of anxiety';
     }
 
+    // Update the anxiety level display
     document.getElementById('BAI-translate').innerText = BAILevel;
     document.getElementById('TRI-BAI-translate').innerText = BAILevel;
 });
+
 
 
 //BDI
 document.getElementById('BDI-submitBtn').addEventListener('click', function() {
     let BDItotalScore = 0;
 
-    for (let i = 1; i <= 5; i++) {
-        let selectElement = document.getElementById('BDI-' + i);
-        let value = parseInt(selectElement.value) || 0;
-        BDItotalScore += value;  // Fixed variable name
+    for (let i = 1; i <= 21; i++) {
+
+        let selectedValue = document.querySelector('input[name="BDI-' + i + '"]:checked');
+        
+        // If a radio button is selected, get its value; otherwise, default to 0
+        let value = selectedValue ? parseInt(selectedValue.value) : 0;
+        BDItotalScore += value;
     }
 
+    // Update the total score display
     document.querySelector('.BDI-Total').innerText = BDItotalScore;
     document.querySelector('.TRI-BDI-Total').innerText = BDItotalScore;
 
+    // Determine the anxiety level based on the total score
     let BDILevel = '';
-    if (BDItotalScore >= 0 && BDItotalScore <= 10) {
-        BDILevel = 'These ups and downs are considered normal';
-    } else if (BDItotalScore >= 11 && BDItotalScore <= 16) {
-        BDILevel = 'Mild mood disturbance';
-    } else if (BDItotalScore >= 17 && BDItotalScore <= 20) {
-        BDILevel = 'Borderline clinical depression';
-    } else if (BDItotalScore == 21 && BDItotalScore <= 30) {
-        BDILevel = 'Moderate depression';
-    } else if (BDItotalScore >= 31 && BDItotalScore <= 40) {
-        BDILevel = 'Severe depression';
-    } else if (BDItotalScore >= 40) {
-        BDILevel = 'Extreme depression';
+    if (BDItotalScore >= 0 && BDItotalScore <= 21) {
+        BDILevel = 'Low Anxiety';
+    } else if (BDItotalScore >= 22 && BDItotalScore <= 35) {
+        BDILevel = 'Moderate Anxiety';
+    } else if (BDItotalScore >= 36) {
+        BDILevel = 'Potential concerning levels of anxiety';
     }
 
+    // Update the anxiety level display
     document.getElementById('BDI-translate').innerText = BDILevel;
     document.getElementById('TRI-BDI-translate').innerText = BDILevel;
 });
+
 
 //EQ
 document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('EQ-submitBtn').addEventListener('click', function() {
 
-
         function calculateAndDisplayScores(part, prefix, totalElementId, translateElementId, additionalTextElementId) {
             let totalScore = 0;
             for (let i = 1; i <= 10; i++) {
-                let id = prefix + '-' + i;  // Updated to match the new ID format
-                let selectElement = document.getElementById(id);
-                if (selectElement) {
-                    let value = parseInt(selectElement.value) || 0;
+                let id = `${prefix}-${i}`;  // Updated to match the new ID format
+                let selectedElement = document.querySelector(`input[name="${id}"]:checked`);
+                if (selectedElement) {
+                    let value = parseInt(selectedElement.value) || 0;
                     totalScore += value;
-                } else {
-                    console.warn("Element with ID " + id + " not found.");
                 }
             }
 
@@ -462,52 +475,22 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Process each part
         console.log("Processing EQEA");
-        calculateAndDisplayScores("EA -", 'EQEA', 'TRI-TOTAL-EQ-EA', 'EQEA-translate', 'TRI-TRANSLATE-EQ-EA');
+        calculateAndDisplayScores("EA", 'EA', 'TRI-TOTAL-EQ-EA', 'EQEA-translate', 'TRI-TRANSLATE-EQ-EA');
 
         console.log("Processing EQEM");
-        calculateAndDisplayScores("EM -", 'EQEM', 'TRI-TOTAL-EQ-EM', 'EQEM-translate', 'TRI-TRANSLATE-EQ-EM');
+        calculateAndDisplayScores("EM", 'EM', 'TRI-TOTAL-EQ-EM', 'EQEM-translate', 'TRI-TRANSLATE-EQ-EM');
 
         console.log("Processing EQSEA");
-        calculateAndDisplayScores("SEA -", 'EQSEA', 'TRI-TOTAL-EQ-SEA', 'EQSEA-translate', 'TRI-TRANSLATE-EQ-SEA');
+        calculateAndDisplayScores("SEA", 'SEA', 'TRI-TOTAL-EQ-SEA', 'EQSEA-translate', 'TRI-TRANSLATE-EQ-SEA');
 
         console.log("Processing EQRM");
-        calculateAndDisplayScores("RM -", 'EQRM', 'TRI-TOTAL-EQ-RM', 'EQRM-translate', 'TRI-TRANSLATE-EQ-RM');
-
+        calculateAndDisplayScores("RM", 'RM', 'TRI-TOTAL-EQ-RM', 'EQRM-translate', 'TRI-TRANSLATE-EQ-RM');
     });
 });
 
 
-// PID5-5
-// function calculateTotalScore(ids) {
-//     let totalScore = 0;
-//     let selectedValues = [];
-    
-//     ids.forEach(id => {
-//         let selectElement = document.getElementById(id);
-//         if (selectElement) { // Check if the element exists
-//             let value = parseInt(selectElement.value) || 0;
-//             totalScore += value;
-//             selectedValues.push(value); // Store only the value for display
-//         } else {
-//             console.warn(`Element with ID "${id}" not found.`);
-//         }
-//     });
 
-//     return { totalScore, selectedValues };
-// }
 
-// function calculateProratedValue(totalScore, numberOfIds) {
-//     if (numberOfIds === 0) return 0; // Avoid division by zero
-//     return Math.round((totalScore * 220) / numberOfIds);
-// }
-
-// function generateIdList(prefix, start, end) {
-//     let ids = [];
-//     for (let i = start; i <= end; i++) {
-//         ids.push(`${prefix}-${i}`);
-//     }
-//     return ids;
-// }
 
 function calculateTotalScore(ids) {
     let totalScore = 0;

@@ -4,7 +4,7 @@ body{
     background-position: center; /* Center the image */
     background-repeat: no-repeat; /* Do not repeat the image */
     background-size: cover; /* Resize the background image to cover the entire container */
-    color: white;
+    color: white !important;
     overflow-x: hidden;
     scroll-behavior: smooth;
     margin: 0;
@@ -17,6 +17,19 @@ body{
     align-items: center ;
 }
 
+button{
+    background-color: #FFB6C1  !important;
+    color: white !important;
+    border: none !important;
+
+    transition: 3.5 ease-in-out !important;
+    
+}
+
+button:hover{
+    background-color: #f37c9a  !important;
+    color: rgb(255, 255, 255) !important;
+}
 
 
 
@@ -39,13 +52,12 @@ main{
 
     padding: 30px;
     border-radius: 30px;
-
     text-align: center;
 
     display: flex;
     flex-direction: column;
-    /* justify-content: space; */
     align-items: center;
+
 }
 
 
@@ -58,13 +70,13 @@ main{
 
 .profile-panel{
     width: 100%;
-    height: 5%;
+    height: 10%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    gap: 0 20px;
     /* border: 1px solid red; */
+    padding: 20px;
 
 
 }
@@ -77,7 +89,7 @@ main{
     justify-content: flex-end;
     align-items: center;
     gap: 15px;
-    padding: 0 10px;
+
 }
 
 .profile-container img{
@@ -106,25 +118,27 @@ main{
 
 
 .panel{
-    height: 95%;
+    height: 90%;
     width: 100%;
     
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: center;
+    /* padding-left: 7vw; */
+    gap: 3.5vw;
     align-items: center;
     /* border: 1px solid red; */
+    margin: 0;
 }
 
 
+#big-logo{
+    display: block;
+}
 
-
-
-
-
-.image-panel img{
-    width: 100%;
-    height: 100%;
+.panel img{
+    width: 280px;
+    height: 280px;
     /* border: 1px solid red; */
 }
 
@@ -160,9 +174,9 @@ header h1 {
 }
 
 .records {
-    background-color: #333333;
+    background-color: #333333 !important;
     color: #FAFAFA;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1) !important;
 }
 
 .btn:hover {
@@ -174,16 +188,17 @@ header h1 {
 }
 
 .records:hover {
-    background-color: #2b2b2b;
+    background-color: #2b2b2b !important;
 }
 
 /* Footer Styles */
 footer {
-    margin-top: 50px;
-    background-color: #333333;
+    /* background-color: #333333; */
     color: #FAFAFA;
     padding: 10px;
     border-radius: 10px;
+    width: 100%;
+    /* border: 1px solid red; */
 }
 
 footer p {
@@ -204,6 +219,86 @@ footer nav a:hover {
 
 
 
+
+
+
+
+
+
+
+
+.settings{
+    background-color: transparent;
+    width: 100%;
+    height: 80%;
+    padding: 5vh 3vw;
+
+    display: flex;
+    flex-direction: row;
+    /* border: 1px solid red; */
+    
+}
+
+
+.profile-settings{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding: 2vh 1vw;
+    /* border: 1px solid red; */
+    width: 100%;
+}
+
+.profile-settings .profile-img {
+    margin-top: 50px;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+}
+
+.profile-img{
+    margin-bottom: 20px;
+}
+
+#profilePicture{
+    width: 150px;
+}
+
+.text-center{
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+
+
+
+
+
+.none{
+    display: none;
+}
+
+
+.logout-button {
+    background: #fff !important;
+    color: #2f2f2f !important;
+    font-weight: 600 !important;
+    border: none !important;
+    padding: 12px 20px !important;
+    cursor: pointer !important;
+    border-radius: 5px !important;
+    font-size: 16px;
+    border: 2px solid transparent !important;
+    transition: 0.3s ease !important;
+  }
+  
+.logout-button:hover {
+    color: #2f2f2f !important;
+    border-color: #fff !important;
+    background: rgba(255, 255, 255, 0.15) !important;
+}
 
 
 
@@ -519,6 +614,7 @@ footer nav a:hover {
 
 
 }
+
 
 
 
