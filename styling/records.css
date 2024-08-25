@@ -1,0 +1,227 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+    background-image: url("/resource/pexels-taryn-elliott-6405694.jpg");
+    width: 100vw;
+    height: 200vh; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    background-size: cover; 
+    color: white !important;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+
+    padding:20px 10px;
+}
+
+.container{
+    width: 80%;
+    height: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: 30px;
+    text-align: center;
+    padding: 30px 10px;
+
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+
+button{
+    background-color: #FFB6C1  !important;
+    color: white !important;
+    border: none !important;
+
+    transition: 3.5 ease-in-out !important;
+    
+}
+
+button:hover{
+    background-color: #f37c9a  !important;
+    color: rgb(255, 255, 255) !important;
+}
+
+button:focus{
+    outline: none !important; 
+    box-shadow: none !important;
+}
+
+.frosted-glass-table {
+    /* background: rgba(255, 255, 255, 0.3) !important;  */
+    /* border: 1px solid rgba(255, 255, 255, 0.5) !important; */
+    backdrop-filter: blur(8px) !important; 
+    -webkit-backdrop-filter: blur(8px) !important; 
+    border-collapse: collapse;
+    padding: 20px;
+    border-radius: 10px;
+
+    color: rgb(255, 255, 255) !important;
+    width: 90% !important;
+    cursor:default !important;
+    margin-top: 3vh !important;
+}
+
+.frosted-glass-table th, .frosted-glass-table td {
+    padding: 12px;
+    text-align: left;
+    /* background: rgba(255, 255, 255, 0.1) !important;  */
+    
+}
+.frosted-glass-table td{
+    /* text-decoration: underline !important; */
+    cursor: pointer !important;
+}
+
+tr:hover{
+    color: white !important;
+}
+
+.frosted-glass-table th {
+    /* background: rgba(255, 255, 255, 0.2) !important;  */
+
+}
+
+.table-name {
+    width: 70% !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin-top: 12.5vh;
+    width: 35px;
+    height: 22vh;
+    /* background-color: #FFB6C1; */
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-left: none;
+    backdrop-filter: blur(8px);
+
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-start;
+    gap: 0px;
+    border-radius: 0 20px 20px 0;
+    transition: width 0.1s ease;
+    z-index: 1000;
+}
+.menu-container {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    width: 100%;
+    
+}
+
+.menu-container a{
+    width: 100%;
+}
+
+.menu-item {
+    padding: 10px;
+    cursor: pointer;
+    height: 6vh;
+    width: 100%;
+    text-align: center;
+    /* border: 1px solid red; */
+
+}
+
+.menu-item:hover {
+    background-color: #e1aeba;
+}
+
+.burger-icon-container {
+    margin: 10px 4px 0 0;
+}
+
+.sidebar.expanded {
+    width: 120px;
+}
+
+.sidebar.expanded .menu-container {
+    display: flex;
+}
+
+#burger-icon{
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+}
+
+.sidebar.expanded {
+    width: 120px;
+    background-color: #FFB6C1;
+    color: white;
+}
+
+.sidebar.expanded .menu-item:hover {
+    background-color: #f37c9a;
+}
+
+a{
+    text-decoration: none !important;
+    color: white !important;
+}
+
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #ead7d7; /* Background color of the preloader */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Ensures the preloader is above other content */
+    opacity: 1; /* Start fully visible */
+    transition: opacity 0.8s ease-out; /* Smooth fade-out effect */
+}
+
+.spinner {
+    border: 8px solid #f3f3f3; /* Light grey background of the spinner */
+    border-top: 8px solid #dd7ea2; /* Blue color of the spinner */
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    animation: spin .5s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+#content {
+    display: none; /* Initially hidden */
+}

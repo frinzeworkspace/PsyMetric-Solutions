@@ -3,9 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/resource/logo (2).png" type="image/x-icon" />
     <title>Records</title>
+    <link rel="stylesheet" href="/styling/records.css">
+    <script src="/scripts/records.js" defer></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
     
+
+
+    <div class="container">
+        <h1>Records</h1>
+        <table class="table frosted-glass-table table-borderless table-hover">
+            <thead>
+                <tr>
+                    <th class="table-name">Name</th>
+                    <th>Record Date/Time</th>
+                    <!-- <th>Last Edited Date/Time</th> -->
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>John Doe</td>
+                    <td>02:30 PM | 2024-08-25</td>
+                    <!-- <td>2024-08-25 15:00</td> -->
+                    <td>
+                        <button class="btn btn-primary" onclick="printRecord('John Doe')">Print</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Jane Smith</td>
+                    <td>09:15 AM | 2024-08-24 </td>
+                    <!-- <td>2024-08-24 10:00</td> -->
+                    <td>
+                        <button class="btn btn-primary" onclick="printRecord('Jane Smith')">Print</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Melvin Yu </td>
+                    <td>02:30 PM | 2024-08-25</td>
+                    <!-- <td>2024-08-25 15:00</td> -->
+                    <td>
+                        <button class="btn btn-primary" onclick="printRecord('John Doe')">Print</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Robert Hill</td>
+                    <td>09:15 AM | 2024-08-24 </td>
+                    <!-- <td>2024-08-24 10:00</td> -->
+                    <td>
+                        <button class="btn btn-primary" onclick="printRecord('Jane Smith')">Print</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Rain Walter</td>
+                    <td>02:30 PM | 2024-08-25</td>
+                    <!-- <td>2024-08-25 15:00</td> -->
+                    <td>
+                        <button class="btn btn-primary" onclick="printRecord('John Doe')">Print</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Peter Scott</td>
+                    <td>09:15 AM | 2024-08-24 </td>
+                    <!-- <td>2024-08-24 10:00</td> -->
+                    <td>
+                        <button class="btn btn-primary" onclick="printRecord('Jane Smith')">Print</button>
+                    </td>
+                </tr>
+                <!-- Add more records here -->
+            </tbody>
+        </table>
+    </div>
+
+    <div class="sidebar" id="sidebar"> 
+        <div class="burger-icon-container">
+            <img id="burger-icon" src="/resource/burger-icon.png">
+        </div>
+
+        <div class="menu-container">
+            <a href="/pages/home.html"><div class="menu-item">Home</div></a>
+            <a href="#">
+                <div class="menu-item">New</div>
+            </a>
+        </div>
+    </div>
+    <div id="preloader">
+        <div class="spinner"></div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
