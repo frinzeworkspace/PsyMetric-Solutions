@@ -24,11 +24,11 @@
 
       <div class="profile-panel">
         <div class="logout-panel">
-          <h4 id="dynamic-name"></h4>
+          <h4 id="dynamic-name">Please update your profile</h4>
         </div>
 
         <div class="profile-container">
-          <img src="" id="toggleImage" alt="Toggle Image"/>
+          <img src="/resource/profile-icon.png" id="toggleImage" alt="Toggle Image"/>
         </div>
       </div>
 
@@ -65,7 +65,7 @@
                 <form>
                     <div class="mb-3">
                         <label for="fullName" class="form-label">Full Name</label>
-                        <input type="text" class="form-control" id="fullName" placeholder="Fullname">
+                        <input type="text" class="form-control" id="fullName" placeholder="Fullname" autocomplete="off">
                     </div>
                     <div class="mb-3">
                         <label for="birthday" class="form-label">Date of birth</label>
@@ -74,11 +74,11 @@
                     <div class="mb-3">
                       <label for="phone" class="form-label">Phone Number</label>
                       <div class="input-group">
-                          <span class="input-group-text">+63 9</span>
-                          <input type="tel" class="form-control" id="phone" placeholder="Enter 9 digits" maxlength="12">
+                          <span class="input-group-text">+63</span>
+                          <input type="tel" class="form-control" id="phone" placeholder="Enter 10 digits" maxlength="10" autocomplete="off">
                       </div>
                       <div id="phoneFeedback" class="invalid-feedback">
-                          Please enter exactly 9 digits
+                          Please enter exactly 10 digits
                       </div>
                     </div>
                 </form>
@@ -99,12 +99,13 @@
                         <label for="confirmPassword" class="form-label">Confirm Password</label>
                         <input type="password" class="form-control" id="confirmPassword" placeholder="********">
                     </div>
-                    <div> 
-                      <button type="submit" class="btn btn-primary" id="save-changes">Save Changes</button>
-                      <button type="submit" class="btn btn-primary logout-button" id="logout">Log Out</button>
-                    </div>
-                    
+
                 </form>
+                <div> 
+                  <button type="submit" class="btn btn-primary" id="save-changes">Save Changes</button>
+                  <button class="btn btn-primary logout-button" id="logout">Log Out</button>
+                </div>
+                
             </div>
         </div>
       </div>

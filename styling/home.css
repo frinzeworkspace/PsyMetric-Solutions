@@ -254,6 +254,7 @@ footer nav a:hover {
     width: 150px;
     height: 150px;
     object-fit: cover;
+    border-radius: 50%;
 }
 
 .profile-img{

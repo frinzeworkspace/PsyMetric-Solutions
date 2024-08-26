@@ -3,22 +3,18 @@ const user01 = {
     details : {
         name: "frinze",
         dateOfBirth:"04/23/2000",
-        Phone_Number: "09667216204"
+        Phone_Number: "9667216204"
     },
     records:{
         record1001:{
             clientName: "Alyssa",
             dateRecorded: "04/06/2024",
             timeRecorded: "12:00 AM",
-            lastDateEdited: "05/06/2024",
-            lastTimeEdited: "2:00 PM"
         },
         record1002:{
             clientName: "John Doe",
             dateRecorded: "06/06/2024",
             timeRecorded: "10:00 AM",
-            lastDateEdited: "06/06/2024",
-            lastTimeEdited: "1:00 PM"
         }
     }
 }

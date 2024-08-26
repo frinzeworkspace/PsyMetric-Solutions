@@ -95,9 +95,13 @@ tr:hover{
 }
 
 .table-name {
-    width: 70% !important;
+    width: 65% !important;
 }
 
+.last-edited{
+    font-size: 1.3vh !important;
+    font-style: italic !important;
+}
 
 
 
