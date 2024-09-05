@@ -11,15 +11,22 @@ document.addEventListener('scroll', function() {
 
 // Pre Loader
 window.addEventListener('load', function() {
-   
     setTimeout(function() {
-        document.getElementById('preloader').style.opacity = '0';
-        setTimeout(function() {
-            document.getElementById('preloader').style.display = 'none';
-            document.getElementById('content').style.display = 'block';
-        }, 1000); 
-    }, 200); 
+        var preloader = document.getElementById('preloader');
+        var content = document.getElementById('content');
+
+        if (preloader) {
+            preloader.style.opacity = '0';
+            setTimeout(function() {
+                preloader.style.display = 'none';
+                if (content) {
+                    content.style.display = 'block';
+                }
+            }, 1000);
+        }
+    }, 200);
 });
+
 
 //Select Behavior
 document.querySelectorAll('.form-select').forEach(select => {
@@ -50,7 +57,6 @@ document.querySelectorAll('.form-select').forEach(select => {
 document.addEventListener('DOMContentLoaded', function() {
     let isConfirm = false;
 
-    // Check session storage and set flag
     if (sessionStorage.getItem('reloadFlag') === 'true') {
         sessionStorage.removeItem('reloadFlag');
 
@@ -58,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function() {
     } else {
         sessionStorage.setItem('reloadFlag', 'true');
     }
-    // Handle beforeunload event
+
     window.addEventListener('beforeunload', function(event) {
         if (sessionStorage.getItem('reloadFlag') === 'true' && !isConfirm) {
             event.preventDefault();

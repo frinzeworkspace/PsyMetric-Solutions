@@ -1,18 +1,19 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
 import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+import { getFirestore } from 'https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js';
 
 const firebaseConfig = {
-  apiKey: "",
+  apiKey: "AIzaSyABCK5AOwsw0CgZCfqeZCREBx5xfQbtfW4",
   authDomain: "psymetricsolutions.firebaseapp.com",
   projectId: "psymetricsolutions",
   storageBucket: "psymetricsolutions.appspot.com",
-  messagingSenderId: "",
-  appId: "",
+  messagingSenderId: "", // Verify if this needs to be filled
+  appId: "1:826794938922:web:4ae8b184a5e7c45faf2953",
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+const db = getFirestore(app);
 
 document.getElementById('login-form').addEventListener("submit", function (event) {
     event.preventDefault();
@@ -39,7 +40,7 @@ document.getElementById('login-form').addEventListener("submit", function (event
             document.getElementById('email').value = '';
             document.getElementById('password').value = '';
 
-            window.location.href = '/pages/home.html';
+            window.location.href = '/pages/home.html'; // Verify if this path is correct
         })
         .catch((error) => {
             let errorMessage;

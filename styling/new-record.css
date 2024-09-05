@@ -2,106 +2,114 @@
     box-sizing: border-box;
 }
 
+
 body{
-    padding:20px 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100vw;
-    background-image: url("/resource/pexels-taryn-elliott-6405694.jpg");
-    height: 100%; /* You must set a specified height */
 
-    background-size: cover; /* Resize the background image to cover the entire container */
-    color: white;
+    width: 100vw;
+    height: 100%; 
+    padding:20px 10px;
+    margin: 0;
+
+    background-image: url("/resource/pexels-taryn-elliott-6405694.jpg");
+    background-size: cover; 
+
     overflow-x: hidden;
     scroll-behavior: smooth;
-    margin: 0;
+
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
 }
 
+
+.frosted-glass-table {
+    background: rgba(255, 255, 255, 0.3) !important; 
+    border: 1px solid rgba(255, 255, 255, 0.5) !important;
+    backdrop-filter: blur(8px) !important; 
+    -webkit-backdrop-filter: blur(8px) !important; 
+    border-collapse: collapse;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.frosted-glass-table th, .frosted-glass-table td {
+    border: 1px solid rgba(255, 255, 255, 0.5) !important;
+    padding: 12px;
+    text-align: left;
+    background: rgba(255, 255, 255, 0.1) !important; 
+}
+
+.frosted-glass-table th {
+    background: rgba(255, 255, 255, 0.2) !important;
+
+}
 
 .table{
     text-align: left;
 }
 
+.table-container{
+    overflow-x: auto;
+    overflow-y: auto;
+    transform: rotateX(180deg);
+}
+
+.table-container > table{
+    transform: rotateX(180deg);
+}
+
 #PIDTable, #PIDTable-2, #TestResultsAndInterpretation{
     min-width: 100%;
-    
 }
+
 
 .psymetric-logo{
     width: 30px;
     height: 30px;
 }
+
 .psymetric-logo{
     cursor: pointer;
 }
 
-
-.frosted-glass-table {
-    background: rgba(255, 255, 255, 0.3) !important; /* Semi-transparent white background */
-    border: 1px solid rgba(255, 255, 255, 0.5) !important;
-    backdrop-filter: blur(8px) !important; /* Blur effect */
-    -webkit-backdrop-filter: blur(8px) !important; /* Vendor prefix for Safari */
-    border-collapse: collapse;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    /* color: rgb(0, 0, 0); */
-}
-.frosted-glass-table th, .frosted-glass-table td {
-    border: 1px solid rgba(255, 255, 255, 0.5) !important;
-    padding: 12px;
-    text-align: left;
-    background: rgba(255, 255, 255, 0.1) !important; /* Slightly transparent cells */
-    /* color: rgb(255, 255, 255); */
-}
-.frosted-glass-table th {
-    background: rgba(255, 255, 255, 0.2) !important; /* Slightly more opaque header */
-    /* color: rgb(0, 0, 0); */
-}
-
 .questions-and-overall-results{
-    padding-top: 15px;
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    gap: 20px;
+
     width: 80vw;
     height: 100%;
-    justify-content: center;
-
+    padding-top: 15px;
+    
     /* border: 1px solid red; */
-    gap: 20px;
 }
-
 
 #fullname{
     border-radius: 0 5px 5px 0  !important;
 }
 
 .over-all-results{
-    overflow-x: auto;
     width: 50%;
-    /* background-color: rgb(255, 255, 255); */
+    height: 100%;
+    padding: 10px 30px;
+
     border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 20px;
+    
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
-    padding: 10px 30px;
-    height: 100%;
+
+    overflow-x: auto;
+
     color: rgb(255, 255, 255);
-    border-radius: 20px;
+
     /* border: 1px solid red; */
 }
 
-.table-container{
-    overflow-x: auto;
-    overflow-y: auto;
-    /* height: 60vh; */
-    transform: rotateX(180deg);
-}
-
-.table-container >table {
-    transform: rotateX(180deg);
-}
 
 .over-all-results>div{
     margin-top: 15px;
@@ -111,7 +119,6 @@ body{
     padding-bottom: 25px;
 }
 
-
 .section-group{
     display: flex;
     flex-direction: row;
@@ -120,51 +127,52 @@ body{
 }
 
 .questions-and-results{
-    width: 50%;
-    /* border: 1px solid rgb(20, 112, 148); */
     display: flex;
     flex-direction: column;
     gap: 30px;
+
+    width: 50%;
+
+    /* border: 1px solid rgb(20, 112, 148); */
 }
 
 .questions{
-    width: 40%;
-    border-radius: 20px;
-    /* background-color: rgb(236, 235, 218); */
-    /* background-color: rgb(230, 240, 238); */
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-
-    padding:30px 10px 15px 10px;
     display: flex;
     flex-direction: column;
+
+    width: 40%;
+    padding:30px 10px 15px 10px;
+
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
 }
 
 
 .results{
-    width: 60%;
-    /* background-color: rgb(236, 235, 218); */
-    /* background-color: rgb(230, 240, 238); */
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    
-    padding:10px;
-    border-radius: 20px;
-    color: rgb(255, 255, 255);
-    text-align: center;
-
     display: flex;
     flex-direction: column;
     justify-content: start;
-
     gap: 3vh;
+
+    width: 60%;
+    padding:10px;
+
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 20px;
+
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    
+    text-align: center;
+    color: rgb(255, 255, 255);
 }
 
 .custom-select.selected {
-    background-color: #FFB6C1; /* Change this to your desired background color */
-    border-color: #dbdedf/* Optional: Change the border color to match the background */;
+    background-color: #FFB6C1;
+    border-color: #dbdedf;
     color: white;
 }
 
@@ -177,7 +185,6 @@ body{
 /* All Labels */
 .custom-label{
     border: 5px !important;
-    /* border: 2px solid rgb(245, 240, 240)  !important; */
     background-color: white !important;
     color: rgb(0, 0, 0) !important;
 }
@@ -190,8 +197,6 @@ body{
 .input-group label{
     width: 25%;
 }
-
-
 
 .selection-cont{
     width: 75%;
@@ -215,12 +220,23 @@ body{
 }
   
   
+
+.input-group-life label{
+    width: 16% !important;
+}
+
+
+
+
+
+
+
 /* Radio when Selected */
 .btn-check:checked + .btn {
     border-radius: 5px !important;
     background-color: #FFB6C1 !important;
     border-color: rgb(255, 255, 255) !important;
-    color: rgb(255, 255, 255) !important; /* Change text color for better contrast if needed */
+    color: rgb(255, 255, 255) !important;
 }
   
   
@@ -257,17 +273,6 @@ body{
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
 .PID5-results{
     gap: 1vh;
     text-align: left;
@@ -293,9 +298,6 @@ body{
     width: 20%;
 }
 
-/* #PID5submitBtn{
-    margin-top: auto;
-} */
 
 h2,h1,h3{
     text-align: center;
@@ -327,7 +329,6 @@ h2,h1,h3{
     overflow-x: auto;
     gap: 20px;
     padding-bottom: 10px;
-    overscroll-behavior: contain;
     white-space: nowrap;
     transform: rotateX(180deg);
     scroll-behavior: smooth;
@@ -349,7 +350,6 @@ h2,h1,h3{
     overflow-x: auto;
     gap: 20px;
     padding-bottom: 10px;
-    overscroll-behavior: contain;
     white-space: nowrap;
     transform: rotateX(180deg);
     scroll-behavior: smooth;
@@ -371,7 +371,6 @@ h2,h1,h3{
     overflow-x: auto;
     gap: 20px;
     padding-bottom: 10px;
-    overscroll-behavior: contain;
     white-space: nowrap;
     transform: rotateX(180deg);
     scroll-behavior: smooth;
@@ -400,7 +399,6 @@ h2,h1,h3{
     overflow-x: auto;
     gap: 5px;
     padding-bottom: 10px;
-    overscroll-behavior: contain;
     white-space: nowrap;
     transform: rotateX(180deg);
     scroll-behavior: smooth;
@@ -512,9 +510,6 @@ button:hover{
 }
 
 
-
-
-
 .PIDbuttonContainer{
     display: flex;
     flex-direction: row;
@@ -523,52 +518,41 @@ button:hover{
     /* border: 1px solid red; */
 }
 
-
-
-
-
-
-
-
 #progress-bar {
     position: fixed;
     top: 0;
     left: 0;
+    
     height: 3.5px;
+    width: 0%; 
+
     background-color: #f37c9a;
-    width: 0%; /* Initial width */
-    transition: width 0.1s; /* Smooth transition */
-    /* margin-left: 10px; */
+    
+
+    transition: width 0.1s; 
 }
 
 
 .header {
-
-
-    top: 0;
-    left: 0;
-
-    color: white;
-
-    background: transparent;
-    padding: 1.3vh 0;
-    width: 100vw;
-    z-index: 1000; /* Ensures the header is above other content */
-    /* border: 1px solid rgba(255, 255, 255, 0.5); */
-
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items:center;
+
+    top: 0;
+    left: 0;
+    z-index: 1000;
+
+    height: 100vh;
+    width: 100vw;
+    padding: 30px;
     margin: 0;
     
-    height: 100vh;
-
-    padding: 30px;
-    /* margin-bottom: 10vh; */
+    background: transparent;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+ 
+    color: white;
 }
 
 .header h1{
@@ -614,18 +598,18 @@ button:hover{
     left: 0;
     width: 100%;
     height: 100%;
-    background: #ead7d7; /* Background color of the preloader */
+    background: #ead7d7; 
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 9999; /* Ensures the preloader is above other content */
-    opacity: 1; /* Start fully visible */
-    transition: opacity 0.8s ease-out; /* Smooth fade-out effect */
+    z-index: 9999; 
+    opacity: 1; 
+    transition: opacity 0.8s ease-out; 
 }
 
 .spinner {
-    border: 8px solid #f3f3f3; /* Light grey background of the spinner */
-    border-top: 8px solid #dd7ea2; /* Blue color of the spinner */
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid #dd7ea2; 
     border-radius: 50%;
     width: 150px;
     height: 150px;
@@ -714,13 +698,39 @@ button:hover{
 
 
 
+
+.over-all-results {
+    overflow: hidden; 
+    width: 50%; 
+    transition: width 0.1s ease; 
+}
+
+.over-all-results.expanded {
+    width: 50%; 
+}
+
+
+.questions-and-results {
+    transition: width 0.1s ease; 
+}
+
+.questions-and-results.full-width {
+    width: 100%; 
+}
+
+.questions-and-results.half-width {
+    width: 50%; 
+}
+
+
+
 .sidebar {
     position: fixed;
     top: 0;
     left: 0;
     margin-top: 12.5vh;
     width: 35px;
-    height: 27vh;
+    height: 32vh;
     /* background-color: #FFB6C1; */
     border: 1px solid rgba(255, 255, 255, 0.5);
     backdrop-filter: blur(8px);
@@ -745,7 +755,7 @@ button:hover{
         height: 6.5vh;
     } 
     .sidebar.expanded {
-        height: 27vh;
+        height: 32vh;
     }
 
 }

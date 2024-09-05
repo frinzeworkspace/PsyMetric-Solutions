@@ -1,43 +1,30 @@
 *{
     box-sizing: border-box;
+
+    margin: 0;
+    padding: 0;
 }
 
 body{
-    padding:20px 10px;
     display: flex;
-    flex-direction: column;
     align-items: center;
+    justify-content: center;
+    
     width: 100vw;
-    background-image: url("/resource/pexels-taryn-elliott-6405694.jpg");
     height: 100%; 
+    min-height: 100vh;
+    padding: 0 10px;
+
+    background-image: url("/resource/pexels-taryn-elliott-6405694.jpg");
     background-position: center; 
     background-repeat: no-repeat; 
     background-size: cover; 
-    color: white;
+
     overflow-x: hidden;
     scroll-behavior: smooth;
-}
-.Login-Text{
-    font-size: 25vh;
+
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
     color: white;
-}
-
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@200;300;400;500;600;700&display=swap");
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-body {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  width: 100%;
-  padding: 0 10px;
 }
 
 body::before {
@@ -61,6 +48,12 @@ body::before {
   -webkit-backdrop-filter: blur(8px);
   height: 100%;
 }
+
+.Login-Text{
+  font-size: 25vh;
+  color: white;
+}
+
 
 form {
   display: flex;

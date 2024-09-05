@@ -54,3 +54,9 @@ function generateQuestionnaire() {
 document.querySelector('.EQ-special').innerHTML = generateQuestionnaire();
 
 
+
+
+
+
+
+
