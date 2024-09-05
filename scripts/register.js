@@ -3,12 +3,12 @@ import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com
 import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyABCK5AOwsw0CgZCfqeZCREBx5xfQbtfW4",
-  authDomain: "psymetricsolutions.firebaseapp.com",
+  apiKey: "",
+  authDomain: "",
   projectId: "psymetricsolutions",
-  storageBucket: "psymetricsolutions.appspot.com",
+  storageBucket: "",
   messagingSenderId: "",
-  appId: "1:826794938922:web:4ae8b184a5e7c45faf2953",
+  appId: "",
 };
 
 
