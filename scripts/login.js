@@ -3,12 +3,12 @@ import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/fir
 import { getFirestore } from 'https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyABCK5AOwsw0CgZCfqeZCREBx5xfQbtfW4",
-  authDomain: "psymetricsolutions.firebaseapp.com",
+  apiKey: "",
+  authDomain: "",
   projectId: "psymetricsolutions",
-  storageBucket: "psymetricsolutions.appspot.com",
-  messagingSenderId: "", // Verify if this needs to be filled
-  appId: "1:826794938922:web:4ae8b184a5e7c45faf2953",
+  storageBucket: "",
+  messagingSenderId: "", 
+  appId: "",
 };
 
 const app = initializeApp(firebaseConfig);
