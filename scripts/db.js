@@ -35,7 +35,7 @@ const records2ahfh13dsqw6ylkl21 = {
             }
             ,
             Anxiousness: {
-                Total_Partial_Raw_Facet_Score: 20,
+                Total_Partial_Raw_Facet_Score: 21,
                 Prorated_Raw_Facet_Score: 20,
                 Average_Raw_Facet_Score: 30,
             }
